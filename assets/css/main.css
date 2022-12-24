@@ -777,6 +777,48 @@ section {
 .contact .php-email-form button[type=submit]:hover {
   background: rgba(0, 131, 116, 0.8);
 }
+
+
+/*--------------------------------------------------------------
+# Search Vehicle
+--------------------------------------------------------------*/
+.search_level{
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.search_area{
+  height: 45vh;
+  width: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-color: var(--color-primary);
+  padding-top: 10px;
+}
+
+.search-from-grp{
+  width: 90%;
+  margin: auto;
+}
+
+.search-from-grp .form-control{
+  border: style solid 2px;
+  border-color: #00796b;
+}
+.search-from-grp .btn{
+  border: style solid 2px;
+  margin-left: 250px;
+  background-color: var(--color-primary);
+  color: white;
+}
+.search-from-grp .src-from-lvl{
+  font-size: medium;
+  margin-bottom: 10px;
+}
+
+
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/

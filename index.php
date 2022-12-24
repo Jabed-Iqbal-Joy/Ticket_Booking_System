@@ -12,7 +12,7 @@ include 'header.php'
 
 
     <!--================ Facilities Area  =================-->
-    <section class="facilities_area section_gap">
+    <section class="facilities_area section_gap" id="service" class="service">
         <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="">
         </div>
         <div class="container">

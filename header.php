@@ -79,7 +79,7 @@
                     <ul>
                         <li><a href="#hero">Home</a></li>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#services">Booking</a></li>
+                        <li><a href="#service">Booking</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#team">Team</a></li>
                         <li><a href="blog.html">Blog</a></li>
