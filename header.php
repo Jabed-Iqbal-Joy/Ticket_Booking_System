@@ -80,9 +80,9 @@
 
                 <nav id="navbar_service" class="navbar vehicle_book">
                     <ul>
-                        <li><a href="search_vehicle.php"><span class="bi bi-bus-front vehicle_book_icon"></span>BUS</a></li>
-                        <li><a href="#about"><span class="bi bi-train-freight-front vehicle_book_icon"></span>Train</a></li>
-                        <li><a href="#service"><span class="bi bi-airplane-fill vehicle_book_icon"></span>Flight</a></li>
+                        <li><a href="search_vehicle.php?vehicle=bus"><span class="bi bi-bus-front vehicle_book_icon"></span>BUS</a></li>
+                        <li><a href="search_vehicle.php?vehicle=train"><span class="bi bi-train-freight-front vehicle_book_icon"></span>Train</a></li>
+                        <li><a href="search_vehicle.php?vehicle=flight"><span class="bi bi-airplane-fill vehicle_book_icon"></span>Flight</a></li>
                     </ul>
                 </nav>
 

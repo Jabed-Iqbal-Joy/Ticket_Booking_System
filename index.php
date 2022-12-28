@@ -1,5 +1,3 @@
-
-
 <?php
 include 'header.php'
 ?>
@@ -24,22 +22,28 @@ include 'header.php'
             </div>
             <div class="row mb_30">
                 <div class="col-lg-4 col-md-6">
-                    <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-dinner"></i>Bus</h4>
-                        <p>Buy bus ticket anytime from anywhere with just a click</p>
-                    </div>
+                    <a style="text-decoration: none" href="search_vehicle.php?vehicle=bus">
+                        <div class="facilities_item">
+                            <h4 class="sec_h4"><i class="lnr lnr-dinner"></i>Bus</h4>
+                            <p>Buy bus ticket anytime from anywhere with just a click</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-bicycle"></i>Train</h4>
-                        <p>Buy rail tickets online in three easy steps: search, select and pay.</p>
-                    </div>
+                    <a style="text-decoration: none" href="search_vehicle.php?vehicle=train">
+                        <div class="facilities_item">
+                            <h4 class="sec_h4"><i class="lnr lnr-bicycle"></i>Train</h4>
+                            <p>Buy rail tickets online in three easy steps: search, select and pay.</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-shirt"></i>Air</h4>
-                        <p>Book domestic air tickets online lowest fare possible.</p>
-                    </div>
+                    <a href="search_vehicle.php?vehicle=flight">
+                        <div class="facilities_item">
+                            <h4 class="sec_h4"><i class="lnr lnr-shirt"></i>Air</h4>
+                            <p>Book domestic air tickets online lowest fare possible.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

@@ -4,7 +4,11 @@
 
 <section class="mb-5" id="search">
       <div class="search_level">
-         <h1>BUS</h1>
+         <h1> 
+         <?php $vehicle = $_GET['vehicle'];
+         echo strtoupper($vehicle);
+          ?>
+         </h1>
       </div>
       <div class="search_area">
          <form>
