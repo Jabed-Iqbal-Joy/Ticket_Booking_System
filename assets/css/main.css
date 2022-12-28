@@ -294,6 +294,7 @@ section {
   letter-spacing: 0.8px;
   color: #fff;
   font-family: var(--font-primary);
+  width: fit-content;
 }
 
 .header .logo h1 span {
@@ -312,6 +313,22 @@ section {
 # Desktop Navigation
 --------------------------------------------------------------*/
 @media (min-width: 1280px) {
+
+ .vehicle_book{
+  position: fixed;
+  margin-left: 220px;
+ }
+
+ .vehicle_book_icon{
+  color: white;
+  font-size: 30px;
+  margin-right: 10px;
+ }
+
+
+
+
+
   .navbar {
     padding: 0;
   }
@@ -328,6 +345,23 @@ section {
     position: relative;
   }
 
+  /* .navbar_service {
+    padding: 0;
+  }
+
+  .navbar_service ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+  .navbar_service li {
+    left: 0;
+    position: relative;
+  } */
+
   .navbar>ul>li {
     white-space: nowrap;
     padding: 10px 0 10px 28px;
@@ -342,7 +376,7 @@ section {
     font-family: var(--font-secondary);
     font-size: 16px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.719);
     white-space: nowrap;
     transition: 0.3s;
     position: relative;
@@ -613,6 +647,7 @@ section {
 .facilities_item .sec_h4 {
   padding-bottom: 18px;
   color: black;
+  text-align: center;
 }
 
 .facilities_item .sec_h4 i {
@@ -629,6 +664,7 @@ section {
   line-height: 24px;
   margin-bottom: 0px;
   color: black;
+  text-align: center;
 }/*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
@@ -932,4 +968,240 @@ section {
 
 .footer .credits a {
   color: #fff;
+}
+
+/*ticket Booking page CSS */
+/*---------------------------------------------------------*/
+
+.book_tickt_main_div{
+  display: flex;
+  margin-top: 20px;
+ }
+ 
+.ticket_form{
+  background-color: whitesmoke;
+  padding: 20px;
+  margin-left: auto;
+}
+
+.ticket_form_heading{
+  /* margin-top: 10px;
+  background-color: #008374; */
+  width: 30%;
+  /* height: 40px; */
+  padding: 5px;
+  text-align: center;
+  color: white;
+  border: solid 1px;
+  background-color: #008374;
+  margin-bottom: 10px;
+}
+.ticket_form .p_details{
+  margin-top: 10px;
+  margin-left: 2px;
+  border: solid 3px;
+  border-color: #00796b;
+}
+.ticket_form .gender{
+  display: flex;
+}
+.ticket_form .gender input{
+  margin-left: auto;
+}
+.ticket_form .gender label{
+  margin-right: auto;
+}
+.p_box{
+  width: 50%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+ 
+}
+.p_box label{
+  margin-bottom: 10px;
+}
+.p_box input{
+  width: 100%;
+}
+
+.ticket_box_first_col{
+  width: 25%;
+  margin: 10px;
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+}
+.ticket_box_second_col{
+  width: 38%;
+  margin: 10px;
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+
+}
+.seat_box input{
+  width: 100%;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: medium;
+  color: #222222;
+  background-color: whitesmoke;
+}
+
+
+
+.choose_seat_main_div{
+  height: fit-content;
+  background-color: whitesmoke;
+}
+.choose_seat{
+  background-color: whitesmoke;
+  margin-top: 5px;
+  /* margin-left: 20px; */
+}
+.choose_seat_heading{
+  /* margin-top: 10px;
+  background-color: #008374; */
+  width: 100%;
+  /* height: 40px; */
+  padding: 5px;
+  text-align: left;
+  color: white;
+  border: solid 1px;
+  background-color: #008374;
+  margin-bottom: 5px;
+}
+.t_seat .ticket_box{
+  width: 250px;
+  /* height: 200px; */
+  border: 1px solid #c3c3c3;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.t_seat .ticket_box div{
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+  position: relative;
+}
+.t_seat .ticket_box input[type="checkbox"]
+{
+  
+  display: none;
+  width: 40px;
+  height: 40px;
+  background-color: red;
+}
+.t_seat .ticket_box span
+{
+  margin-top: 10px;
+  text-align: center;
+  width: 40px;
+  height: 20px;
+  display: inline-block;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+.t_seat .ticket_box .non_booked{
+  background-color: lightgreen;
+}
+.t_seat .ticket_box  .booked{
+  background-color: lightcoral;
+}
+
+.total_cost label{
+  color: var(--color-primary);
+  font-weight: bold;
+  margin: 12px;
+}
+
+.total_cost input{
+  width: 80%;
+  border: 2x solid;
+  margin: 10px;
+  border-color: var(--color-primary);
+  text-align: center;
+  font-weight: bold;
+  font-size: medium;
+  color: #222222;
+}
+
+.route_class{
+  background-color: #00796b;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+.route_class input{
+  margin: 5px;
+}
+
+.route_class #route_txt1{
+  background-color: #00796b;
+  border: none;
+  width: 100px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+.route_class #route_txt2{
+  background-color: #00796b;
+  border: none;
+  width: 100px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+.route_class #class_txt{
+  background-color: #00796b;
+  border: none;
+  width: 100px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+.ticket_table{
+  width: 80%;
+}
+.heading{
+  width: 30%;
+  /* height: 40px; */
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border: solid 1px;
+  background-color: #008374;
+}
+
+.check label input[ type="checkbox"]
+{
+  display: none;
+}
+
+.check label span{
+  margin-left: 500px;
+  margin-right: auto;
+  position: relative;
+  display: inline-block;
+  background: red;
+  padding: 5px;
+  font-size: medium;
+  color: whitesmoke;
 }

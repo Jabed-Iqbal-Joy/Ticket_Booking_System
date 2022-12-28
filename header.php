@@ -26,6 +26,7 @@
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <!-- Template Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
@@ -54,8 +55,8 @@
             <div class="container d-flex justify-content-center justify-content-md-between">
                 <div class="contact-info d-flex align-items-center">
                     <i class="bi bi-envelope d-flex align-items-center"><a
-                            href="mailto:contact@example.com">contact@example.com</a></i>
-                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
+                            href="mailto:support@easyroutes.com">support@easyroute.com</a></i>
+                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>+018XX-XXXXXX</span></i>
                 </div>
                 <div class="social-links d-none d-md-flex align-items-center">
                     <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -72,15 +73,26 @@
         <header id="header" class="header d-flex align-items-center">
 
             <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-                <a href="index.html" class="logo d-flex align-items-center">
-                    <h1>Easy Routes​<span>.</span></h1>
+                <a href="index.php" class="logo d-flex align-items-center">
+                    <h1>Easy ​<span>Routes</span></h1>
+
                 </a>
-                <nav id="navbar" class="navbar">
+
+                <nav id="navbar_service" class="navbar vehicle_book">
                     <ul>
-                        <li><a href="#hero">Home</a></li>
+                        <li><a href="search_vehicle.php"><span class="bi bi-bus-front vehicle_book_icon"></span>BUS</a></li>
+                        <li><a href="#about"><span class="bi bi-train-freight-front vehicle_book_icon"></span>Train</a></li>
+                        <li><a href="#service"><span class="bi bi-airplane-fill vehicle_book_icon"></span>Flight</a></li>
+                    </ul>
+                </nav>
+
+
+                <nav id="navbar" class="navbar">
+                    <ul> 
+                        <!-- <li><a href="#index.php">Home</a></li> -->
                         <li><a href="#about">About</a></li>
-                        <li><a href="#service">Booking</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
+                        <!-- <li><a href="#service">Booking</a></li> -->
+                        <!-- <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#team">Team</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li class="dropdown"><a href="#"><span>Drop Down</span> <i
@@ -101,10 +113,10 @@
                                 <li><a href="#">Drop Down 3</a></li>
                                 <li><a href="#">Drop Down 4</a></li>
                             </ul>
-                        </li>
-                        <li><a href="#contact">Contact</a></li>
+                        </li> -->
+                        <li><a href="#contact">Contact us</a></li>
                     </ul>
-                </nav><!-- .navbar -->
+                </nav>
 
                 <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                 <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
@@ -114,6 +126,3 @@
     </div>
 
     <!-- End Header -->
-
-</body>
-</html>

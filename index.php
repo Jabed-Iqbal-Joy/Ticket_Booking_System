@@ -1,3 +1,5 @@
+
+
 <?php
 include 'header.php'
 ?>
@@ -17,29 +19,26 @@ include 'header.php'
         </div>
         <div class="container">
             <div class="section_title text-center">
-                <h2 class="title_w">Our Servie</h2>
-                <p>Who are in extremely love with eco friendly system.</p>
+                <h2 class="title_w">Our Service</h2>
+                <!-- <p>Who are in extremely love with eco friendly system.</p> -->
             </div>
             <div class="row mb_30">
                 <div class="col-lg-4 col-md-6">
                     <div class="facilities_item">
                         <h4 class="sec_h4"><i class="lnr lnr-dinner"></i>Bus</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
+                        <p>Buy bus ticket anytime from anywhere with just a click</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="facilities_item">
                         <h4 class="sec_h4"><i class="lnr lnr-bicycle"></i>Train</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
+                        <p>Buy rail tickets online in three easy steps: search, select and pay.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="facilities_item">
                         <h4 class="sec_h4"><i class="lnr lnr-shirt"></i>Air</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
+                        <p>Book domestic air tickets online lowest fare possible.</p>
                     </div>
                 </div>
             </div>
@@ -123,7 +122,8 @@ include 'header.php'
                         </div>
                         <div class="text-center"><button type="submit">Send Message</button></div>
                     </form>
-                </div><!-- End Contact Form -->
+                </div>
+                <!-- End Contact Form -->
 
             </div>
 
