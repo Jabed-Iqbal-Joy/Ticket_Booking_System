@@ -1,5 +1,7 @@
 <?php
-include 'header.php'
+session_start();
+include 'header.php';
+
 ?>
 
 <main id="main">

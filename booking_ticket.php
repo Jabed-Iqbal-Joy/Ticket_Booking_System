@@ -1,5 +1,10 @@
 <?php
-include 'header.php'
+session_start();
+include 'header.php';
+echo "<pre>";
+print_r($_SESSION['final_Vehicle']);
+echo "</pre>";
+echo ($_SESSION['final_Vehicle']['free_seat_index'][2]);
 ?>
 
 <script type="text/javascript" language="javascript">
@@ -7,44 +12,103 @@ function ticket_print(seat_no) {
 
     var selected_item = document.getElementById(seat_no);
     if (selected_item.checked) {
-        if(document.getElementById("fseat_no").value==""){
-            document.getElementById("fseat_no").value=seat_no;
-            document.getElementById("ffare").value=680;
-            document.getElementById("fclass").value="Economy";
-            var total= document.getElementById("total_cost_txt").value;
-            var sum = Number(total)+Number(680);
-            document.getElementById("total_cost_txt").value=sum;
-           
-        }
-        else if(document.getElementById("sseat_no").value==""){
-            document.getElementById("sseat_no").value=seat_no;
-            document.getElementById("sfare").value=680;
-            document.getElementById("sclass").value="Economy";
-            var total= document.getElementById("total_cost_txt").value;
-            var sum = Number(total)+Number(680);
-            document.getElementById("total_cost_txt").value=sum;
-        }
-        else if(document.getElementById("tseat_no").value==""){
-            document.getElementById("tseat_no").value=seat_no;
-            document.getElementById("tfare").value=680;
-            document.getElementById("tclass").value="Economy";
-            var total= document.getElementById("total_cost_txt").value;
-            var sum = Number(total)+Number(680);
-            document.getElementById("total_cost_txt").value=sum;
-        }
-        else if(document.getElementById("frseat_no").value==""){
-            document.getElementById("frseat_no").value=seat_no;
-            document.getElementById("frfare").value=680;
-            document.getElementById("frclass").value="Economy";
-            var total= document.getElementById("total_cost_txt").value;
-            var sum = Number(total)+Number(680);
-            document.getElementById("total_cost_txt").value=sum;
-        }
-        else{
-            document.getElementById(seat_no).checked=false;
+        if (document.getElementById("fseat_no").value == "") {
+            document.getElementById("fseat_no").value = seat_no;
+            document.getElementById("ffare").value = 680;
+            document.getElementById("fclass").value = "Economy";
+            var total = document.getElementById("total_cost_txt").value;
+            var sum = Number(total) + Number(680);
+            document.getElementById("total_cost_txt").value = sum;
+
+        } else if (document.getElementById("sseat_no").value == "") {
+            document.getElementById("sseat_no").value = seat_no;
+            document.getElementById("sfare").value = 680;
+            document.getElementById("sclass").value = "Economy";
+            var total = document.getElementById("total_cost_txt").value;
+            var sum = Number(total) + Number(680);
+            document.getElementById("total_cost_txt").value = sum;
+        } else if (document.getElementById("tseat_no").value == "") {
+            document.getElementById("tseat_no").value = seat_no;
+            document.getElementById("tfare").value = 680;
+            document.getElementById("tclass").value = "Economy";
+            var total = document.getElementById("total_cost_txt").value;
+            var sum = Number(total) + Number(680);
+            document.getElementById("total_cost_txt").value = sum;
+        } else if (document.getElementById("frseat_no").value == "") {
+            document.getElementById("frseat_no").value = seat_no;
+            document.getElementById("frfare").value = 680;
+            document.getElementById("frclass").value = "Economy";
+            var total = document.getElementById("total_cost_txt").value;
+            var sum = Number(total) + Number(680);
+            document.getElementById("total_cost_txt").value = sum;
+        } else {
+            document.getElementById(seat_no).checked = false;
+            document.getElementById("warning_seat").hidden = false;
         }
     } else {
-        console.log("Not Checked");
+        if (document.getElementById("fseat_no").value == seat_no) {
+            document.getElementById("fseat_no").value = seat_no;
+            document.getElementById("ffare").value = 680;
+            document.getElementById("fclass").value = "Economy";
+            var total = document.getElementById("total_cost_txt").value;
+            var sum = Number(total) + Number(680);
+            document.getElementById("total_cost_txt").value = sum;
+
+        } else if (document.getElementById("sseat_no").value == seat_no) {
+            if (document.getElementById("tseat_no").value != "") {
+                document.getElementById("sseat_no").value = document.getElementById("tseat_no").value;
+                document.getElementById("sfare").value = 680;
+                document.getElementById("sclass").value = "Economy";
+                if (document.getElementById("frseat_no").value != "") {
+                    document.getElementById("tseat_no").value = document.getElementById("frseat_no").value;
+                    document.getElementById("tfare").value = 680;
+                    document.getElementById("tclass").value = "Economy";
+                    document.getElementById("frseat_no").value = "";
+                    document.getElementById("frfare").value = "";
+                    document.getElementById("frclass").value = "";
+                } else {
+                    document.getElementById("tseat_no").value = "";
+                    document.getElementById("tfare").value = "";
+                    document.getElementById("tclass").value = "";
+                }
+            } else {
+                document.getElementById("sseat_no").value = "";
+                document.getElementById("sfare").value = "";
+                document.getElementById("sclass").value = "";
+            }
+            var total = document.getElementById("total_cost_txt").value;
+            var sum = Number(total) + Number(680);
+            document.getElementById("total_cost_txt").value = sum;
+        } else if (document.getElementById("tseat_no").value == seat_no) {
+            if (document.getElementById("frseat_no").value != "") {
+                document.getElementById("tseat_no").value = document.getElementById("frseat_no").value;
+                document.getElementById("tfare").value = 680;
+                document.getElementById("tclass").value = "Economy";
+                document.getElementById("frseat_no").value = "";
+                document.getElementById("frfare").value = "";
+                document.getElementById("frclass").value = "";
+                var total = document.getElementById("total_cost_txt").value;
+                var sum = Number(total) - Number(680);
+                document.getElementById("total_cost_txt").value = sum;
+            } else {
+                document.getElementById("tseat_no").value = "";
+                document.getElementById("tfare").value = "";
+                document.getElementById("tclass").value = "";
+                var total = document.getElementById("total_cost_txt").value;
+                var sum = Number(total) - Number(680);
+                document.getElementById("total_cost_txt").value = sum;
+            }
+        } else if (document.getElementById("frseat_no").value == seat_no) {
+            document.getElementById("frseat_no").value = "";
+            document.getElementById("frfare").value = "";
+            document.getElementById("frclass").value = "";
+            var total = document.getElementById("total_cost_txt").value;
+            var sum = Number(total) - Number(680);
+            document.getElementById("total_cost_txt").value = sum;
+        } else {
+            // document.getElementById(seat_no).checked = false;
+            //document.getElementById("warning_seat").hidden=false;
+        }
     }
 }
 </script>
@@ -149,12 +213,12 @@ function ticket_print(seat_no) {
 
             <div class="choose_seat_main_div col-3 container">
                 <div class="route_class">
-                   <label class="route">Route : </label>
-                   <input type="text" id="route_txt1" value="Dhaka" disabled>
-                   <i class="bi bi-caret-right-fill arrow"></i>
-                   <input type="text" id="route_txt2" value="Chittagong" disabled><br>
-                   <label class="route">Class  : </label>
-                   <input type="text" id="class_txt" value="Economy">
+                    <label class="route">Route : </label>
+                    <input type="text" id="route_txt1" value="Dhaka" disabled>
+                    <i class="bi bi-caret-right-fill arrow"></i>
+                    <input type="text" id="route_txt2" value="Chittagong" disabled><br>
+                    <label class="route">Class : </label>
+                    <input type="text" id="class_txt" value="Economy">
                 </div>
                 <div class="choose_seat">
                     <div class="choose_seat_heading">
@@ -162,44 +226,36 @@ function ticket_print(seat_no) {
                     </div>
                     <div class="t_seat justify-content-around">
                         <!-- Hold the cursor on seats for seat numbers,  -->
+                        <label id="warning_seat" class="warning_seat" hidden><span
+                                class="bi bi-exclamation-square-fill"></span> Maximum of 4 seat(s) can be booked
+                            at-a-time</label>
                         <label>click to select or deselect.</label>
                         <div class="ticket_box justify-content-around">
-                            <?php
-                  for ($x = 'A',$y=1; $x <= 'J'; $x++,$y++) {
-                    ?>
-                            <div class="<?php if ($y % 2)  echo ("non_booked"); else  echo ("booked"); ?>">
+                            <?php for ($x = 'A', $y = 0; $y < ($_SESSION['final_Vehicle']['v_total_seat'] / 4); $x++, $y++) { ?>
+
+
+                            <?php for ($z = 0; $z < 4; $z++) { ?>
+
+                            <div class="<?php if ($_SESSION['final_Vehicle']['free_seat_index'][(4 * $y) + $z] == '0')
+                                        echo ("non_booked");
+                                    else
+                                        echo ("booked"); ?>">
                                 <label>
-                                    <input type="checkbox" id="<?php echo($x) ?>1"
-                                        <?php if(!($y%2)) echo("disabled"); ?> name="seat[]"
-                                        <?php if(!($y%2)) echo("checked"); ?>
-                                        onclick="ticket_print('<?php echo $x?>1');"><span><?php echo "$x"; ?>1</span>
+                                    <input type="checkbox" id="<?php echo ($x); echo ($z + 1); ?>"
+                                        <?php if ( !($_SESSION['final_Vehicle']['free_seat_index'][(4 * $y) + $z] == '0')) echo ("disabled"); ?>
+                                        name="seat[]"
+                                        <?php if ( !($_SESSION['final_Vehicle']['free_seat_index'][(4 * $y) + $z] == '0')) echo ("checked"); ?>
+                                        onclick="ticket_print('<?php echo ($x); echo ($z + 1); ?>');"><span>
+                                        <?php echo "$x";
+                                                echo $z + 1; ?>
+                                    </span>
                                 </label>
                             </div>
-                            <div class="<?php if ($y % 2)  echo ("non_booked"); else  echo ("booked"); ?>">
-                                <label>
-                                    <input type="checkbox" id="<?php echo($x) ?>2"
-                                        <?php if(!($y%2)) echo("disabled"); ?> name="seat[]"
-                                        <?php if(!($y%2)) echo("checked"); ?>
-                                        onclick="ticket_print('<?php echo $x?>2');"><span><?php echo "$x"; ?>2</span>
-                                </label>
-                            </div>
+                            <?php if ($z == 1) { ?>
                             <div style="margin:0px;"> </div>
-                            <div class="<?php if ($y % 2)  echo ("non_booked"); else  echo ("booked"); ?>">
-                                <label>
-                                    <input type="checkbox" id="<?php echo($x) ?>3"
-                                        <?php if(!($y%2)) echo("disabled"); ?> name="seat[]"
-                                        <?php if(!($y%2)) echo("checked"); ?>
-                                        onclick="ticket_print('<?php echo $x?>3');"><span><?php echo "$x"; ?>3</span>
-                                </label>
-                            </div>
-                            <div class="<?php if ($y % 2)  echo ("non_booked"); else  echo ("booked"); ?>">
-                                <label>
-                                    <input type="checkbox" id="<?php echo($x) ?>4"
-                                        <?php if(!($y%2)) echo("disabled"); ?> name="seat[]"
-                                        <?php if(!($y%2)) echo("checked"); ?>
-                                        onclick="ticket_print('<?php echo $x?>4');"><span><?php echo "$x"; ?>4</span>
-                                </label>
-                            </div>
+                            <?php } ?>
+                            <?php } ?>
+
                             <?php } ?>
                         </div>
                     </div>
