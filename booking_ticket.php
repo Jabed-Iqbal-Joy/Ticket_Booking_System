@@ -5,6 +5,55 @@ echo "<pre>";
 print_r($_SESSION['final_Vehicle']);
 echo "</pre>";
 //echo ($_SESSION['final_Vehicle']['free_seat_index'][2]);
+
+if(isset($_POST['book_btn']))
+{
+    echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+//     $pname = $_POST['t_from_fname']." ".$_POST['t_from_lname'];
+//     $pname = filter_var($pname ,FILTER_SANITIZE_STRING);
+//     $pgender = $_POST['gender'];
+//     $pgender = filter_var($pgender ,FILTER_SANITIZE_STRING);
+//     $pmbl = $_POST['t_mobile'];
+//     $pmbl = filter_var($pmbl ,FILTER_SANITIZE_STRING);
+//     $pemail = $_POST['t_email'];
+//     $pemail = filter_var($pemail ,FILTER_SANITIZE_STRING);
+//     $pseat = $_POST['fseat_no'];
+//     if($_POST['sseat_no'])
+//     $pseat = $pseat." ".$_POST['sseat_no'];
+//     if($_POST['tseat_no'])
+//     $pseat = $pseat." ".$_POST['tseat_no'];
+//     if($_POST['frseat_no'])
+//     $pseat = $pseat." ".$_POST['frseat_no'];
+//     $pseat = filter_var($pseat ,FILTER_SANITIZE_STRING);
+//     $p_t_cost = $_POST['total_cost_in'];
+//     $p_t_cost = filter_var($p_t_cost ,FILTER_SANITIZE_STRING);
+//     $text = "Text_User";
+//     $v_type = $_SESSION['final_Vehicle']['v_type'];
+//     $v_name = $_SESSION['final_Vehicle']['v_name'];
+//     $start_point = $_SESSION['final_Vehicle']['start_point'];
+//     $end_point = $_SESSION['final_Vehicle']['end_point'];
+//     $dep_time = $_SESSION['final_Vehicle']['dep_time'];
+//     $arr_time = $_SESSION['final_Vehicle']['arr_time'];
+//     $date = $_SESSION['final_Vehicle']['date'];
+
+
+//     $insert_booking_details = $connect->query(
+//         "INSERT INTO `booking_details`(b_p_name, b_p_gender, b_p_mobile,
+//          b_p_mobile, b_total_fare, b_user_name, b_v_type, b_v_number, 
+//          b_start_point, b_end_point, b_dep_time, b_arr_time, b_date )
+//          VALUES('$pname', '$pgender', '$pmbl', '$pemail', '$pseat',
+//          '$p_t_cost', '$text', '$v_type', '$v_name','$start_point',
+//          '$end_point','$dep_time','$arr_time','$date')");?>
+
+ <!-- <script>
+ window.location.href = 'booking_ticket.php';
+ </script> -->
+// <?php
+}
+
+
 ?>
 
 <script type="text/javascript" language="javascript">
@@ -150,98 +199,107 @@ function ticket_print(seat_no) {
 
 
 <main id="main">
-    <section>
+    <section class="booking_details">
+        <div class="container warning_login" hidden>
+            <label><span class="bi bi-info-square-fill"> </span> Please Login to Book Ticket</label>
+        </div>
         <div class="div book_tickt_main_div">
             <div class="ticket_form col-lg-6">
-                <div class="ticket_form_heading">
-                    <h5>Passenger Details</h5>
-                </div>
-                <div class="row p_details container">
-                    <div class="p_box">
-                        <label> First Name </label><br>
-                        <input type="text" name="t_from_fname">
+                <form action="" method="POST">
+                    <div class="ticket_form_heading">
+                        <h5>Passenger Details</h5>
                     </div>
-                    <div class="p_box">
-                        <label> Last Name </label><br>
-                        <input type="text" name="t_from_fname">
-                    </div>
-                    <div class="gender">
-                        <label> Gender </label>
-                        <input type="radio" id="male" name="gender" value="male">
-                        <label for="male">Male</label><br>
-                        <input type="radio" id="female" name="gender" value="female">
-                        <label for="female">Female</label><br>
-                        <input type="radio" id="others" name="gender" value="others">
-                        <label for="others">Others</label>
+                    <div class="row p_details container">
+                        <div class="p_box">
+                            <label> First Name </label><br>
+                            <input type="text" required name="t_from_fname">
+                        </div>
+                        <div class="p_box">
+                            <label> Last Name </label><br>
+                            <input type="text" required name="t_from_lname">
+                        </div>
+                        <div class="gender">
+                            <label> Gender </label>
+                            <input required type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label><br>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Female</label><br>
+                            <input type="radio" id="others" name="gender" value="others">
+                            <label for="others">Others</label>
 
-                    </div>
-                    <div class="p_box">
-                        <label> Mobile </label><br>
-                        <input type="text" name="t_from_fname">
-                    </div>
-                    <div class="p_box">
-                        <label> Email </label><br>
-                        <input type="text" name="t_from_fname">
-                    </div>
-                </div>
-                <div class="ticket_form_heading mt-2">
-                    <h5>Ticket Details</h5>
-                </div>
-                <div class="row p_details container">
-                    <div class="ticket_box_heading">
-                        <label class="ticket_box_first_col"> Seat </label>
-                        <label class="ticket_box_first_col"> Fare </label>
-                        <label class="ticket_box_second_col"> Class </label>
-                    </div>
-                    <div class="row seat_box">
-                        <div class="ticket_box_first_col">
-                            <input type="text" id="fseat_no" disabled>
                         </div>
-                        <div class="ticket_box_first_col">
-                            <input type="text" id="ffare" disabled>
+                        <div class="p_box">
+                            <label> Mobile </label><br>
+                            <input required type="text" name="t_mobile">
                         </div>
-                        <div class="ticket_box_second_col">
-                            <input type="text" id="fclass" disabled>
+                        <div class="p_box">
+                            <label> Email </label><br>
+                            <input required type="text" name="t_email">
                         </div>
                     </div>
-                    <div class="row seat_box">
-                        <div class="ticket_box_first_col">
-                            <input type="text" id="sseat_no" disabled>
+                    <div class="ticket_form_heading mt-2">
+                        <h5>Ticket Details</h5>
+                    </div>
+                    <div class="row p_details container">
+                        <div class="ticket_box_heading">
+                            <label class="ticket_box_first_col"> Seat </label>
+                            <label class="ticket_box_first_col"> Fare </label>
+                            <label class="ticket_box_second_col"> Class </label>
                         </div>
-                        <div class="ticket_box_first_col">
-                            <input type="text" id="sfare" disabled>
+                        <div class="row seat_box">
+                            <div class="ticket_box_first_col">
+                                <input type="text" id="fseat_no" name="fseat_no" disabled>
+                            </div>
+                            <div class="ticket_box_first_col">
+                                <input type="text" id="ffare" disabled>
+                            </div>
+                            <div class="ticket_box_second_col">
+                                <input type="text" id="fclass" disabled>
+                            </div>
                         </div>
-                        <div class="ticket_box_second_col">
-                            <input type="text" id="sclass" disabled>
+                        <div class="row seat_box">
+                            <div class="ticket_box_first_col">
+                                <input type="text" id="sseat_no" name="sseat_no" disabled>
+                            </div>
+                            <div class="ticket_box_first_col">
+                                <input type="text" id="sfare" disabled>
+                            </div>
+                            <div class="ticket_box_second_col">
+                                <input type="text" id="sclass" disabled>
+                            </div>
+                        </div>
+                        <div class="row seat_box">
+                            <div class="ticket_box_first_col">
+                                <input type="text" id="tseat_no" name="tseat_no" disabled>
+                            </div>
+                            <div class="ticket_box_first_col">
+                                <input type="text" id="tfare" disabled>
+                            </div>
+                            <div class="ticket_box_second_col">
+                                <input type="text" id="tclass" disabled>
+                            </div>
+                        </div>
+                        <div class="row seat_box">
+                            <div class="ticket_box_first_col">
+                                <input type="text" id="frseat_no" name="frseat_no" disabled>
+                            </div>
+                            <div class="ticket_box_first_col">
+                                <input type="text" id="frfare" disabled>
+                            </div>
+                            <div class="ticket_box_second_col">
+                                <input type="text" id="frclass" disabled>
+                            </div>
+                        </div>
+                        <div class="d-flex total_cost">
+                            <label>Total</label>
+                            <input type="text" id="total_cost_txt" style="text-align:center;" name="total_cost_in"
+                                disabled>
+                        </div>
+                        <div class="row">
+                            <button class="book_button" type="submit" name="book_btn"> Book </button>
                         </div>
                     </div>
-                    <div class="row seat_box">
-                        <div class="ticket_box_first_col">
-                            <input type="text" id="tseat_no" disabled>
-                        </div>
-                        <div class="ticket_box_first_col">
-                            <input type="text" id="tfare" disabled>
-                        </div>
-                        <div class="ticket_box_second_col">
-                            <input type="text" id="tclass" disabled>
-                        </div>
-                    </div>
-                    <div class="row seat_box">
-                        <div class="ticket_box_first_col">
-                            <input type="text" id="frseat_no" disabled>
-                        </div>
-                        <div class="ticket_box_first_col">
-                            <input type="text" id="frfare" disabled>
-                        </div>
-                        <div class="ticket_box_second_col">
-                            <input type="text" id="frclass" disabled>
-                        </div>
-                    </div>
-                    <div class="d-flex total_cost">
-                        <label>Total</label>
-                        <input type="text" id="total_cost_txt" style="text-align:center;" disabled>
-                    </div>
-                </div>
+                </form>
             </div>
 
 
@@ -249,12 +307,18 @@ function ticket_print(seat_no) {
             <div class="choose_seat_main_div col-3 container">
                 <div class="route_class">
                     <label class="route">Route : </label>
-                    <input type="text" id="route_txt1" value="Dhaka" disabled>
+                    <input type="text" id="route_txt1" value="<?php echo $_SESSION['final_Vehicle']['start_point']; ?>"
+                        disabled>
                     <i class="bi bi-caret-right-fill arrow"></i>
-                    <input type="text" id="route_txt2" value="Chittagong" disabled><br>
+                    <input type="text" id="route_txt2" value="<?php echo $_SESSION['final_Vehicle']['end_point'];?>"
+                        disabled><br>
                     <label class="route">Bus : Green line paribahan</label><br>
                     <label class="route">Class : </label>
-                    <input type="text" id="class_txt" value="Economy">
+                    <input type="text" id="class_txt" value="<?php echo $_SESSION['final_Vehicle']['v_class']; ?>"
+                        disabled>
+                    <label class="route">Date : </label>
+                    <input type="text" id="class_txt" value="<?php echo $_SESSION['final_Vehicle']['date']; ?>"
+                        disabled>
                 </div>
                 <div class="choose_seat">
                     <div class="choose_seat_heading">
