@@ -4,64 +4,96 @@ include 'header.php';
 echo "<pre>";
 print_r($_SESSION['final_Vehicle']);
 echo "</pre>";
-echo ($_SESSION['final_Vehicle']['free_seat_index'][2]);
+//echo ($_SESSION['final_Vehicle']['free_seat_index'][2]);
 ?>
 
 <script type="text/javascript" language="javascript">
 function ticket_print(seat_no) {
 
     var selected_item = document.getElementById(seat_no);
+    var fare = Number(<?php echo($_SESSION['final_Vehicle']['v_fare_per_seat']); ?>);
     if (selected_item.checked) {
         if (document.getElementById("fseat_no").value == "") {
             document.getElementById("fseat_no").value = seat_no;
-            document.getElementById("ffare").value = 680;
+            document.getElementById("ffare").value = fare;
             document.getElementById("fclass").value = "Economy";
             var total = document.getElementById("total_cost_txt").value;
-            var sum = Number(total) + Number(680);
+            var sum = Number(total) + fare;
             document.getElementById("total_cost_txt").value = sum;
-
+            document.getElementById("seat_color_" + seat_no).classList.replace('non_booked', 'select_book');
         } else if (document.getElementById("sseat_no").value == "") {
             document.getElementById("sseat_no").value = seat_no;
-            document.getElementById("sfare").value = 680;
+            document.getElementById("sfare").value = fare;
             document.getElementById("sclass").value = "Economy";
             var total = document.getElementById("total_cost_txt").value;
-            var sum = Number(total) + Number(680);
+            var sum = Number(total) + Number(fare);
             document.getElementById("total_cost_txt").value = sum;
+            document.getElementById("seat_color_" + seat_no).classList.replace('non_booked', 'select_book');
         } else if (document.getElementById("tseat_no").value == "") {
             document.getElementById("tseat_no").value = seat_no;
-            document.getElementById("tfare").value = 680;
+            document.getElementById("tfare").value = fare;
             document.getElementById("tclass").value = "Economy";
             var total = document.getElementById("total_cost_txt").value;
-            var sum = Number(total) + Number(680);
+            var sum = Number(total) + Number(fare);
             document.getElementById("total_cost_txt").value = sum;
+            document.getElementById("seat_color_" + seat_no).classList.replace('non_booked', 'select_book');
         } else if (document.getElementById("frseat_no").value == "") {
             document.getElementById("frseat_no").value = seat_no;
-            document.getElementById("frfare").value = 680;
+            document.getElementById("frfare").value = fare;
             document.getElementById("frclass").value = "Economy";
             var total = document.getElementById("total_cost_txt").value;
-            var sum = Number(total) + Number(680);
+            var sum = Number(total) + Number(fare);
             document.getElementById("total_cost_txt").value = sum;
+            document.getElementById("seat_color_" + seat_no).classList.replace('non_booked', 'select_book');
         } else {
             document.getElementById(seat_no).checked = false;
             document.getElementById("warning_seat").hidden = false;
         }
     } else {
         if (document.getElementById("fseat_no").value == seat_no) {
-            document.getElementById("fseat_no").value = seat_no;
-            document.getElementById("ffare").value = 680;
-            document.getElementById("fclass").value = "Economy";
+            if (document.getElementById("sseat_no").value != "") {
+                document.getElementById("fseat_no").value = document.getElementById("sseat_no").value;
+                document.getElementById("ffare").value = fare;
+                document.getElementById("fclass").value = "Economy";
+                if (document.getElementById("tseat_no").value != "") {
+                    document.getElementById("sseat_no").value = document.getElementById("tseat_no").value;
+                    document.getElementById("sfare").value = fare;
+                    document.getElementById("sclass").value = "Economy";
+                    if (document.getElementById("frseat_no").value != "") {
+                        document.getElementById("tseat_no").value = document.getElementById("frseat_no").value;
+                        document.getElementById("tfare").value = fare;
+                        document.getElementById("tclass").value = "Economy";
+                        document.getElementById("frseat_no").value = "";
+                        document.getElementById("frfare").value = "";
+                        document.getElementById("frclass").value = "";
+                    } else {
+                        document.getElementById("tseat_no").value = "";
+                        document.getElementById("tfare").value = "";
+                        document.getElementById("tclass").value = "";
+                    }
+                } else {
+                    document.getElementById("sseat_no").value = "";
+                    document.getElementById("sfare").value = "";
+                    document.getElementById("sclass").value = "";
+                }
+            } else {
+                document.getElementById("fseat_no").value = "";
+                document.getElementById("ffare").value = "";
+                document.getElementById("fclass").value = "";
+            }
             var total = document.getElementById("total_cost_txt").value;
-            var sum = Number(total) + Number(680);
+            var sum = Number(total) - Number(fare);
             document.getElementById("total_cost_txt").value = sum;
-
+            document.getElementById("warning_seat").hidden = true;
+            document.getElementById("seat_color_" + seat_no).classList.replace('select_book', 'non_booked');
         } else if (document.getElementById("sseat_no").value == seat_no) {
             if (document.getElementById("tseat_no").value != "") {
                 document.getElementById("sseat_no").value = document.getElementById("tseat_no").value;
-                document.getElementById("sfare").value = 680;
+                document.getElementById("sfare").value = fare;
                 document.getElementById("sclass").value = "Economy";
                 if (document.getElementById("frseat_no").value != "") {
                     document.getElementById("tseat_no").value = document.getElementById("frseat_no").value;
-                    document.getElementById("tfare").value = 680;
+                    document.getElementById("tfare").value = fare;
                     document.getElementById("tclass").value = "Economy";
                     document.getElementById("frseat_no").value = "";
                     document.getElementById("frfare").value = "";
@@ -77,34 +109,37 @@ function ticket_print(seat_no) {
                 document.getElementById("sclass").value = "";
             }
             var total = document.getElementById("total_cost_txt").value;
-            var sum = Number(total) + Number(680);
+            var sum = Number(total) - Number(fare);
             document.getElementById("total_cost_txt").value = sum;
+            document.getElementById("warning_seat").hidden = true;
+            document.getElementById("seat_color_" + seat_no).classList.replace('select_book', 'non_booked');
         } else if (document.getElementById("tseat_no").value == seat_no) {
             if (document.getElementById("frseat_no").value != "") {
                 document.getElementById("tseat_no").value = document.getElementById("frseat_no").value;
-                document.getElementById("tfare").value = 680;
+                document.getElementById("tfare").value = fare;
                 document.getElementById("tclass").value = "Economy";
                 document.getElementById("frseat_no").value = "";
                 document.getElementById("frfare").value = "";
                 document.getElementById("frclass").value = "";
-                var total = document.getElementById("total_cost_txt").value;
-                var sum = Number(total) - Number(680);
-                document.getElementById("total_cost_txt").value = sum;
             } else {
                 document.getElementById("tseat_no").value = "";
                 document.getElementById("tfare").value = "";
                 document.getElementById("tclass").value = "";
-                var total = document.getElementById("total_cost_txt").value;
-                var sum = Number(total) - Number(680);
-                document.getElementById("total_cost_txt").value = sum;
             }
+            var total = document.getElementById("total_cost_txt").value;
+            var sum = Number(total) - Number(fare);
+            document.getElementById("total_cost_txt").value = sum;
+            document.getElementById("warning_seat").hidden = true;
+            document.getElementById("seat_color_" + seat_no).classList.replace('select_book', 'non_booked');
         } else if (document.getElementById("frseat_no").value == seat_no) {
             document.getElementById("frseat_no").value = "";
             document.getElementById("frfare").value = "";
             document.getElementById("frclass").value = "";
             var total = document.getElementById("total_cost_txt").value;
-            var sum = Number(total) - Number(680);
+            var sum = Number(total) - Number(fare);
             document.getElementById("total_cost_txt").value = sum;
+            document.getElementById("warning_seat").hidden = true;
+            document.getElementById("seat_color_" + seat_no).classList.replace('select_book', 'non_booked');
         } else {
             // document.getElementById(seat_no).checked = false;
             //document.getElementById("warning_seat").hidden=false;
@@ -217,6 +252,7 @@ function ticket_print(seat_no) {
                     <input type="text" id="route_txt1" value="Dhaka" disabled>
                     <i class="bi bi-caret-right-fill arrow"></i>
                     <input type="text" id="route_txt2" value="Chittagong" disabled><br>
+                    <label class="route">Bus : Green line paribahan</label><br>
                     <label class="route">Class : </label>
                     <input type="text" id="class_txt" value="Economy">
                 </div>
@@ -236,7 +272,7 @@ function ticket_print(seat_no) {
 
                             <?php for ($z = 0; $z < 4; $z++) { ?>
 
-                            <div class="<?php if ($_SESSION['final_Vehicle']['free_seat_index'][(4 * $y) + $z] == '0')
+                            <div id="seat_color_<?php echo ($x); echo ($z + 1); ?>" class="<?php if ($_SESSION['final_Vehicle']['free_seat_index'][(4 * $y) + $z] == '0')
                                         echo ("non_booked");
                                     else
                                         echo ("booked"); ?>">

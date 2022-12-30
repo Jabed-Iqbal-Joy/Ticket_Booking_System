@@ -1110,11 +1110,20 @@ section {
   overflow: hidden;
 }
 
-.t_seat .ticket_box .non_booked{
-  background-color: lightgreen;
+.non_booked{
+  background-color: rgb(51,153,51);
+  color: white;
+  font-weight: bold;
+}
+.select_book{
+  background-color: rgb(238, 238, 146);
+  color: black;
+  font-weight: bold;
 }
 .t_seat .ticket_box  .booked{
-  background-color: lightcoral;
+  background-color: rgb(198,0,0);
+  color: white;
+  font-weight: bold;
 }
 
 .total_cost label{
