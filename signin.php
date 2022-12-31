@@ -24,6 +24,7 @@ if(isset($_POST['submit'])){
 
       }elseif($row['user_type'] == 'user'){
          $_SESSION['userid'] = 0;
+         $_SESSION['user_details'] = $row;
         // $_SESSION['userid'] = $row['id'];
          ?>
          <script>

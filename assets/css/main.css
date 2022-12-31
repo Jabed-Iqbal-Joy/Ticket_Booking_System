@@ -516,7 +516,7 @@ section {
 }
 .profile p{
   padding:.5rem 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color:var(--light-color);
 }
 
@@ -1328,7 +1328,7 @@ Available vehicle
 .profile a{
   color: var(--white);
 }
-.abtn,
+.btn,
 .delete-btn,
 .option-btn{
    display: block;
@@ -1342,7 +1342,7 @@ Available vehicle
    text-align: center;
 }
 
-.abtn{
+.btn{
    background-color: var(--green);
 }
 
@@ -1354,7 +1354,7 @@ Available vehicle
    background-color: var(--orange);
 }
 
-.abtn:hover,
+.btn:hover,
 .delete-btn:hover,
 .option-btn:hover{
    background-color: var(--black);

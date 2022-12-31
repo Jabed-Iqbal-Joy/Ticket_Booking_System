@@ -2,10 +2,11 @@
 session_start();
 include 'config.php';
 include 'header.php';
-echo "<pre>";
-print_r($_SESSION['final_Vehicle']);
-echo "</pre>";
-//echo ($_SESSION['final_Vehicle']['free_seat_index'][2]);
+// echo (!isset($_SESSION['userid']));
+// echo "<pre>";
+// print_r($_SESSION['final_Vehicle']);
+// echo "</pre>";
+// echo ($_SESSION['final_Vehicle']['free_seat_index'][2]);
 
 if(isset($_POST['book_btn']))
 {
@@ -35,7 +36,7 @@ echo "</pre>";
     echo $pseat;
     $p_t_cost = $_POST['total_cost_in'];
     $p_t_cost = filter_var($p_t_cost ,FILTER_SANITIZE_STRING);
-    $text = "Text_User";
+    $text = $_SESSION['user_details']['u_name'];
     $v_type = $_SESSION['final_Vehicle']['v_type'];
     $v_name = $_SESSION['final_Vehicle']['v_name'];
     $start_point = $_SESSION['final_Vehicle']['start_point'];
@@ -53,10 +54,10 @@ echo "</pre>";
          '$p_t_cost', '$text', '$v_type', '$v_name','$start_point',
          '$end_point','$dep_time','$arr_time','$date')");?>
 
- <script>
- window.location.href = 'booking_ticket.php';
- </script>
- <?php
+<script>
+window.location.href = 'booking_ticket.php';
+</script>
+<?php
 }
 
 
@@ -205,7 +206,7 @@ function ticket_print(seat_no) {
 
 <main id="main">
     <section class="booking_details">
-        <div class="container warning_login" hidden>
+        <div class="container warning_login" <?php if (isset($_SESSION['userid'])) echo 'hidden'; ?>>
             <label><span class="bi bi-info-square-fill"> </span> Please Login to Book Ticket</label>
         </div>
         <div class="div book_tickt_main_div">
@@ -298,10 +299,10 @@ function ticket_print(seat_no) {
                         <div class="d-flex total_cost">
                             <label>Total</label>
                             <input type="text" id="total_cost_txt" style="text-align:center;" name="total_cost_in"
-                            readonly>
+                                readonly>
                         </div>
                         <div class="row">
-                            <button class="book_button" type="submit" name="book_btn"> Book </button>
+                            <button class="book_button" type="submit" name="book_btn" <?php if(!isset($_SESSION['userid'])) echo"disabled"; ?>> Book </button>
                         </div>
                     </div>
                 </form>

@@ -1,17 +1,13 @@
-<?
-session_start();
-$_SESSION['userid']=null;
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <script type="text/javascript" language="javascript">
 function open_bar() {
     console.log("hello");
-    if(document.getElementById("profile").className=="profile pf_hidden")
-    document.getElementById("profile").classList.replace('pf_hidden','pf_active');
+    if (document.getElementById("profile").className == "profile pf_hidden")
+        document.getElementById("profile").classList.replace('pf_hidden', 'pf_active');
     else {
-        document.getElementById("profile").classList.replace('pf_active','pf_hidden');
+        document.getElementById("profile").classList.replace('pf_active', 'pf_hidden');
     }
 
 }
@@ -112,7 +108,7 @@ function open_bar() {
                 <nav id="navbar" class="navbar">
                     <ul>
                         <!-- <li><a href="#index.php">Home</a></li> -->
-                       
+
                         <li><a href="#about">About</a></li>
                         <!-- <li><a href="#service">Booking</a></li> -->
                         <!-- <li><a href="#portfolio">Portfolio</a></li>
@@ -139,14 +135,14 @@ function open_bar() {
                         </li> -->
                         <li><a href="#contact">Contact us</a></li>
                         <?php
-                        echo (isset($_SESSION['userid'])); 
+                        //echo (isset($_SESSION['userid'])); 
                         if(isset($_SESSION['userid']))
                         {
-                            echo ("set");
+                           // echo ("set");
                             echo '<li><a><span id="signin" onclick="open_bar()">Profile</span> </a></li>';
                         }
                         else{
-                            echo ("notset");
+                            //echo ("notset");
                             echo '<li ><a href="signin.php">Sign in</a></li>';
                         }
                         ?>
@@ -159,14 +155,14 @@ function open_bar() {
             </div>
         </header><!-- End Header -->
         <div class="profile pf_hidden" id="profile">
-            <img src="" alt="">
-            <p>abcd</p>
+        <img src="uploaded_img/<?= $_SESSION['user_details']['u_img'];?>" alt="">
+            <p><?=($_SESSION['user_details']['u_name']); ?></p>
             <a href="user_profile_update.php" class="btn">update profile</a>
             <a href="logout.php" class="delete-btn">logout</a>
-            <div class="flex-btn">
+            <!-- <div class="flex-btn">
                 <a href="login.php" class="option-btn">login</a>
                 <a href="register.php" class="option-btn">register</a>
-            </div>
+            </div> -->
         </div>
     </div>
 

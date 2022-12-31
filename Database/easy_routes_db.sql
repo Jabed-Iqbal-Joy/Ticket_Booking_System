@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2022 at 09:27 AM
+-- Generation Time: Dec 31, 2022 at 09:07 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -50,7 +50,8 @@ INSERT INTO `available_vehicle` (`av_id`, `av_v_type`, `av_v_number`, `start_poi
 (3, 'bus', 'SS-002', 'Chittagong', 'Dhaka', '10:00 AM', '8:00 PM', '2022-12-31', 20, '0001111111111000000000000111111111100000'),
 (4, 'bus', 'HE-001', 'Chittagong', 'Dhaka', '10:00 AM', '8:00 PM', '2022-12-30', 24, '0101001000000111111111111000000000000001'),
 (5, 'bus', 'HE-002', 'Chittagong', 'Dhaka', '08:00 AM', '04:00 PM', '2022-12-31', 24, '0101001000000111111111111000000000000001'),
-(6, 'bus', 'HE-003', 'Dhaka', 'Chittagong', '10:00 PM', '05:00 AM', '2022-12-30', 34, '0000111000000100000000000001000000000001');
+(6, 'bus', 'HE-003', 'Dhaka', 'Chittagong', '10:00 PM', '05:00 AM', '2022-12-30', 34, '0000111000000100000000000001000000000001'),
+(7, 'bus', 'HE-003', 'Dhaka', 'Chittagong', '11:00 AM', '7:00 PM', '2023-01-02', 40, '0000000000000000000000000000000000000000');
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,8 @@ CREATE TABLE `booking_details` (
 --
 
 INSERT INTO `booking_details` (`b_id`, `b_p_name`, `b_p_gender`, `b_p_mobile`, `b_p_email`, `b_p_seat`, `b_total_fare`, `b_user_name`, `b_v_type`, `b_v_number`, `b_start_point`, `b_end_point`, `b_dep_time`, `b_arr_time`, `b_date`) VALUES
-(1, 'ab cd', 'male', '11', '11', 'A1 A2 B1 B2', 3800, 'Text_User', '0', '0', '0', '0', '2', '10', '0000-00-00');
+(1, 'ab cd', 'male', '11', '11', 'A1 A2 B1 B2', 3800, 'Text_User', '0', '0', '0', '0', '2', '10', '0000-00-00'),
+(2, 'Jabed  Iqbal ', 'male', '01837844828', 'joy', 'A1 A2 B1 B2', 5600, 'Jabed Iqbal Joy', 'bus', 'Hanif Enterprise', 'Dhaka', 'Chittagong', '11:00 AM', '7:00 PM', '2023-01-02');
 
 -- --------------------------------------------------------
 
@@ -176,8 +178,18 @@ CREATE TABLE `user` (
   `u_user_name` varchar(100) NOT NULL,
   `u_mobile` varchar(100) NOT NULL,
   `u_pass` varchar(100) NOT NULL,
+  `user_type` varchar(30) NOT NULL DEFAULT 'user',
   `u_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`u_id`, `u_name`, `u_user_name`, `u_mobile`, `u_pass`, `user_type`, `u_img`) VALUES
+(1, '1', '1', '1', 'c4ca4238a0b923820dcc509a6f75849b', 'user', 'Screenshot (216).png'),
+(2, '2', '2', '2', 'c81e728d9d4c2f636f067f89cc14862c', 'user', 'Screenshot (216).png'),
+(3, 'Jabed Iqbal Joy', 'joy12', '01837844828', 'c4ca4238a0b923820dcc509a6f75849b', 'user', 'pic-5.png');
 
 -- --------------------------------------------------------
 
@@ -252,13 +264,13 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `available_vehicle`
 --
 ALTER TABLE `available_vehicle`
-  MODIFY `av_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `av_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  MODIFY `b_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `b_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `destination`
@@ -270,7 +282,7 @@ ALTER TABLE `destination`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `u_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
