@@ -10,6 +10,15 @@
   --color-default: #222222;
   --color-primary: #008374;
   --color-secondary: #f85a40;
+  --green:#27ae60;
+  --orange:#f39c12;
+  --red:#e74c3c;
+  --black:#333;
+  --light-color:#666;
+  --white:#fff;
+  --light-bg:#f6f6f6;
+  --border:.2rem solid var(--black);
+  --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
 }
 
 /* Smooth scroll behavior */
@@ -368,6 +377,7 @@ section {
   }
 
   .navbar a,
+  .navbar a span,
   .navbar a:focus {
     display: flex;
     align-items: center;
@@ -472,6 +482,45 @@ section {
     left: 100%;
     visibility: visible;
   }
+  .profile{
+    /* position: absolute;
+    top:120%; right:0; */
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 1240px;
+    box-shadow: var(--box-shadow);
+    border:var(--border);
+    border-radius: .5rem;
+    padding:2rem;
+    text-align: center;
+    background-color: var(--white);
+    width: 18rem;
+    animation: fadeIn .2s linear;
+    background-color: white;
+ }
+
+.pf_active{
+  display: inline-block;
+}
+
+.pf_hidden{
+  display: none;
+}
+
+.profile img{
+  height: 10rem;
+  width: 10rem;
+  margin-bottom: .5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile p{
+  padding:.5rem 0;
+  font-size: 2rem;
+  color:var(--light-color);
+}
+
+
 }
 
 @media (min-width: 1280px) and (max-width: 1366px) {
@@ -842,11 +891,19 @@ section {
   border: style solid 2px;
   border-color: #00796b;
 }
-.search-from-grp .btn{
+.search-from-grp .search_btn{
   border: style solid 2px;
-  margin-left: 250px;
+  margin-left: 280px;
   background-color: var(--color-primary);
   color: white;
+  display: block;
+  margin-top: 1rem;
+  border-radius: .5rem;
+  font-size: 1rem;
+  padding: 10px;
+  text-transform: capitalize;
+  cursor: pointer;
+  text-align: center;
 }
 .search-from-grp .src-from-lvl{
   font-size: medium;
@@ -1266,6 +1323,53 @@ Available vehicle
   margin-top: 25px;
 }
 .s_button1 {background-color: #4CAF50;}
+
+/*button*/
+.profile a{
+  color: var(--white);
+}
+.abtn,
+.delete-btn,
+.option-btn{
+   display: block;
+   width: 100%;
+   margin-top: 1rem;
+   border-radius: .5rem;
+   font-size: 1rem;
+   padding: 10px;
+   text-transform: capitalize;
+   cursor: pointer;
+   text-align: center;
+}
+
+.abtn{
+   background-color: var(--green);
+}
+
+.delete-btn{
+   background-color: var(--red);
+}
+
+.option-btn{
+   background-color: var(--orange);
+}
+
+.abtn:hover,
+.delete-btn:hover,
+.option-btn:hover{
+   background-color: var(--black);
+}
+
+.flex-btn{
+   display: flex;
+   flex-wrap: wrap;
+   gap:1rem;
+}
+
+.flex-btn > *{
+   flex:1;
+}
+
 
 
 

@@ -64,7 +64,6 @@ echo "</pre>";
 
 <script type="text/javascript" language="javascript">
 function ticket_print(seat_no) {
-
     var selected_item = document.getElementById(seat_no);
     var fare = Number(<?php echo($_SESSION['final_Vehicle']['v_fare_per_seat']); ?>);
     if (selected_item.checked) {
@@ -351,7 +350,8 @@ function ticket_print(seat_no) {
                                         <?php if ( !($_SESSION['final_Vehicle']['free_seat_index'][(4 * $y) + $z] == '0')) echo ("disabled"); ?>
                                         name="seat[]"
                                         <?php if ( !($_SESSION['final_Vehicle']['free_seat_index'][(4 * $y) + $z] == '0')) echo ("checked"); ?>
-                                        onclick="ticket_print('<?php echo ($x); echo ($z + 1); ?>');"><span>
+                                        onclick="ticket_print('<?php echo ($x); echo ($z + 1); ?>');">
+                                    <span>
                                         <?php echo "$x";
                                                 echo $z + 1; ?>
                                     </span>

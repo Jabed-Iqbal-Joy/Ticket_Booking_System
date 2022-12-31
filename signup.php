@@ -1,3 +1,55 @@
+<?php
+session_start();
+include 'config.php';
+
+if(isset($_POST['submit'])){
+
+   $name = $_POST['name'];
+   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $username = $_POST['username'];
+   $username = filter_var($username, FILTER_SANITIZE_STRING);
+   $mobile = $_POST['mobile'];
+   $mobile = filter_var($mobile, FILTER_SANITIZE_STRING);
+   $pass = md5($_POST['pass']);
+   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+   $cpass = md5($_POST['cpass']);
+   $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+
+   $image = $_FILES['image']['name'];
+   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image_size = $_FILES['image']['size'];
+   $image_tmp_name = $_FILES['image']['tmp_name'];
+   $image_folder = 'uploaded_img/'.$image;
+
+   $sql= (" SELECT * FROM user WHERE u_user_name='$username' ");
+   $query=$connect->query($sql);
+  
+   if(mysqli_num_rows($query)>0){
+      $message[] = 'username already exist!';
+   }else{
+      if($pass != $cpass){
+         $message[] = 'confirm password not matched!';
+      }else{
+         $insert=mysqli_query($connect,"INSERT INTO user(u_name, u_user_name,u_mobile, u_pass, u_img) VALUES('$name','$username','$mobile','$pass','$image')");
+         if($insert){
+            if($image_size > 2000000){
+               $message[] = 'image size is too large!';
+            }else{
+               move_uploaded_file($image_tmp_name, $image_folder);
+               $message[] = 'signup successfully!';
+               //header('location:signin.php');
+               ?>
+<script>
+window.location.href = 'signin.php';
+</script>
+<?php
+            }
+         }
+      }
+   }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,13 +103,13 @@
         <form action="" enctype="multipart/form-data" method="POST">
             <h3>Sign Up</h3>
             <input type="text" name="name" class="box" placeholder="enter your name" required>
-            <input type="email" name="email" class="box" placeholder="enter your email" required>
+            <input type="username" name="username" class="box" placeholder="enter your username" required>
             <input type="mobile" name="mobile" class="box" placeholder="enter your Mobile Number" required>
             <input type="password" name="pass" class="box" placeholder="enter your password" required>
             <input type="password" name="cpass" class="box" placeholder="confirm your password" required>
             <input type="file" name="image" class="box" required accept="image/jpg, image/jpeg, image/png">
             <input type="submit" value="Sign Up" class="btn" name="submit">
-            <p>already have an account? <a href="login.php">Sign in</a></p>
+            <p>already have an account? <a href="signin.php">Sign in</a></p>
         </form>
     </section>
 </body>

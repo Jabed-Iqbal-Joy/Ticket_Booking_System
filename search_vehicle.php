@@ -74,7 +74,7 @@ if(isset($_POST['search'])){
 
                 </div>
                 <div class="search-from-grp">
-                    <button type="submit" class="btn mt-4" name="search"> Search</button>
+                    <button type="submit" class="search_btn mt-4" name="search"> Search</button>
                 </div>
             </form>
     </section>

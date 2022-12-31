@@ -1,3 +1,48 @@
+<?php
+
+@include 'config.php';
+
+session_start();
+
+if(isset($_POST['submit'])){
+
+   $username = $_POST['username'];
+   $username = filter_var($username, FILTER_SANITIZE_STRING);
+   $pass = md5($_POST['pass']);
+   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+
+   $sql= (" SELECT * FROM user WHERE u_user_name='$username' AND u_pass='$pass' ");
+   $query=$connect->query($sql);
+   $row=mysqli_fetch_assoc($query);
+
+   if(mysqli_num_rows($query)> 0){
+
+      if($row['user_type'] == 'admin'){
+
+         $_SESSION['adminid'] = $row['id'];
+         // header('location:admin_index.php');
+
+      }elseif($row['user_type'] == 'user'){
+         $_SESSION['userid'] = 0;
+        // $_SESSION['userid'] = $row['id'];
+         ?>
+         <script>
+         window.location.href = 'index.php';
+         </script>
+         <?php
+
+      }else{
+         $message[] = 'no user found!';
+      }
+
+   }else{
+      $message[] = 'incorrect username or password!';
+   }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,11 +96,11 @@
     <div class="form-container">
         <form action="" method="POST">
             <h3>Sign In</h3>
-            <input type="email" name="email" class="box" placeholder="enter your email" required>
+            <input type="username" name="username" class="box" placeholder="enter your username" required>
             <input type="password" name="pass" class="box" placeholder="enter your password" required>
             <input type="submit" value="Sign In" class="btn" name="submit">
             <p>Don't have an account? </p>
-            <p><a href="register.php">Sign up</a></p>
+            <p><a href="signup.php">Sign up</a></p>
         </form>
     </div>
 </body>
