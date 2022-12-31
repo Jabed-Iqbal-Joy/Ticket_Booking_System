@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'config.php';
 include 'header.php';
 echo "<pre>";
 print_r($_SESSION['final_Vehicle']);
@@ -11,46 +12,51 @@ if(isset($_POST['book_btn']))
     echo "<pre>";
 print_r($_POST);
 echo "</pre>";
-//     $pname = $_POST['t_from_fname']." ".$_POST['t_from_lname'];
-//     $pname = filter_var($pname ,FILTER_SANITIZE_STRING);
-//     $pgender = $_POST['gender'];
-//     $pgender = filter_var($pgender ,FILTER_SANITIZE_STRING);
-//     $pmbl = $_POST['t_mobile'];
-//     $pmbl = filter_var($pmbl ,FILTER_SANITIZE_STRING);
-//     $pemail = $_POST['t_email'];
-//     $pemail = filter_var($pemail ,FILTER_SANITIZE_STRING);
-//     $pseat = $_POST['fseat_no'];
-//     if($_POST['sseat_no'])
-//     $pseat = $pseat." ".$_POST['sseat_no'];
-//     if($_POST['tseat_no'])
-//     $pseat = $pseat." ".$_POST['tseat_no'];
-//     if($_POST['frseat_no'])
-//     $pseat = $pseat." ".$_POST['frseat_no'];
-//     $pseat = filter_var($pseat ,FILTER_SANITIZE_STRING);
-//     $p_t_cost = $_POST['total_cost_in'];
-//     $p_t_cost = filter_var($p_t_cost ,FILTER_SANITIZE_STRING);
-//     $text = "Text_User";
-//     $v_type = $_SESSION['final_Vehicle']['v_type'];
-//     $v_name = $_SESSION['final_Vehicle']['v_name'];
-//     $start_point = $_SESSION['final_Vehicle']['start_point'];
-//     $end_point = $_SESSION['final_Vehicle']['end_point'];
-//     $dep_time = $_SESSION['final_Vehicle']['dep_time'];
-//     $arr_time = $_SESSION['final_Vehicle']['arr_time'];
-//     $date = $_SESSION['final_Vehicle']['date'];
+    $pname = $_POST['t_from_fname']." ".$_POST['t_from_lname'];
+    $pname = filter_var($pname ,FILTER_SANITIZE_STRING);
+    echo $pname;
+    $pgender = $_POST['gender'];
+    $pgender = filter_var($pgender ,FILTER_SANITIZE_STRING);
+    echo $pgender;
+    $pmbl = $_POST['t_mobile'];
+    $pmbl = filter_var($pmbl ,FILTER_SANITIZE_STRING);
+    echo $pmbl;
+    $pemail = $_POST['t_email'];
+    $pemail = filter_var($pemail ,FILTER_SANITIZE_STRING);
+    echo $pemail;
+    $pseat = $_POST['fseat_no'];
+    if($_POST['sseat_no'])
+    $pseat = $pseat." ".$_POST['sseat_no'];
+    if($_POST['tseat_no'])
+    $pseat = $pseat." ".$_POST['tseat_no'];
+    if($_POST['frseat_no'])
+    $pseat = $pseat." ".$_POST['frseat_no'];
+    $pseat = filter_var($pseat ,FILTER_SANITIZE_STRING);
+    echo $pseat;
+    $p_t_cost = $_POST['total_cost_in'];
+    $p_t_cost = filter_var($p_t_cost ,FILTER_SANITIZE_STRING);
+    $text = "Text_User";
+    $v_type = $_SESSION['final_Vehicle']['v_type'];
+    $v_name = $_SESSION['final_Vehicle']['v_name'];
+    $start_point = $_SESSION['final_Vehicle']['start_point'];
+    $end_point = $_SESSION['final_Vehicle']['end_point'];
+    $dep_time = $_SESSION['final_Vehicle']['dep_time'];
+    $arr_time = $_SESSION['final_Vehicle']['arr_time'];
+    $date = $_SESSION['final_Vehicle']['date'];
 
 
-//     $insert_booking_details = $connect->query(
-//         "INSERT INTO `booking_details`(b_p_name, b_p_gender, b_p_mobile,
-//          b_p_mobile, b_total_fare, b_user_name, b_v_type, b_v_number, 
-//          b_start_point, b_end_point, b_dep_time, b_arr_time, b_date )
-//          VALUES('$pname', '$pgender', '$pmbl', '$pemail', '$pseat',
-//          '$p_t_cost', '$text', '$v_type', '$v_name','$start_point',
-//          '$end_point','$dep_time','$arr_time','$date')");?>
+    $insert_booking_details = $connect->query(
+        "INSERT INTO `booking_details`(b_p_name, b_p_gender, b_p_mobile,
+         b_p_email,b_p_seat, b_total_fare, b_user_name, b_v_type, b_v_number, 
+         b_start_point, b_end_point, b_dep_time, b_arr_time, b_date )
+         VALUES('$pname', '$pgender', '$pmbl', '$pemail', '$pseat',
+         '$p_t_cost', '$text', '$v_type', '$v_name','$start_point',
+         '$end_point','$dep_time','$arr_time','$date')");?>
 
- <!-- <script>
+ <script>
  window.location.href = 'booking_ticket.php';
- </script> -->
-// <?php
+ </script>
+ <?php
 }
 
 
@@ -248,7 +254,7 @@ function ticket_print(seat_no) {
                         </div>
                         <div class="row seat_box">
                             <div class="ticket_box_first_col">
-                                <input type="text" id="fseat_no" name="fseat_no" disabled>
+                                <input type="text" id="fseat_no" name="fseat_no" readonly>
                             </div>
                             <div class="ticket_box_first_col">
                                 <input type="text" id="ffare" disabled>
@@ -259,7 +265,7 @@ function ticket_print(seat_no) {
                         </div>
                         <div class="row seat_box">
                             <div class="ticket_box_first_col">
-                                <input type="text" id="sseat_no" name="sseat_no" disabled>
+                                <input type="text" id="sseat_no" name="sseat_no" readonly>
                             </div>
                             <div class="ticket_box_first_col">
                                 <input type="text" id="sfare" disabled>
@@ -270,7 +276,7 @@ function ticket_print(seat_no) {
                         </div>
                         <div class="row seat_box">
                             <div class="ticket_box_first_col">
-                                <input type="text" id="tseat_no" name="tseat_no" disabled>
+                                <input type="text" id="tseat_no" name="tseat_no" readonly>
                             </div>
                             <div class="ticket_box_first_col">
                                 <input type="text" id="tfare" disabled>
@@ -281,7 +287,7 @@ function ticket_print(seat_no) {
                         </div>
                         <div class="row seat_box">
                             <div class="ticket_box_first_col">
-                                <input type="text" id="frseat_no" name="frseat_no" disabled>
+                                <input type="text" id="frseat_no" name="frseat_no" readonly>
                             </div>
                             <div class="ticket_box_first_col">
                                 <input type="text" id="frfare" disabled>
@@ -293,7 +299,7 @@ function ticket_print(seat_no) {
                         <div class="d-flex total_cost">
                             <label>Total</label>
                             <input type="text" id="total_cost_txt" style="text-align:center;" name="total_cost_in"
-                                disabled>
+                            readonly>
                         </div>
                         <div class="row">
                             <button class="book_button" type="submit" name="book_btn"> Book </button>
