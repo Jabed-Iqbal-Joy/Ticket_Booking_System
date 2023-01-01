@@ -485,8 +485,8 @@ section {
   .profile{
     /* position: absolute;
     top:120%; right:0; */
-    position: absolute;
-    margin-top: 5px;
+    position: fixed;
+    margin-top: 520px;
     margin-left: 1240px;
     box-shadow: var(--box-shadow);
     border:var(--border);
