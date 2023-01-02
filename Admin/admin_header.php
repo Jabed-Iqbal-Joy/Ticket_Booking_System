@@ -17,12 +17,12 @@ if(isset($message)){
 
    <div class="flex">
 
-      <a href="admin_page.php" class="logo"><h1>Admin<span>Panel</span></h1></a>
+      <a href="index.php" class="logo"><h1>Admin<span>Panel</span></h1></a>
 
       <nav class="navbar">
-         <a href="admin_page.php">home</a>
-         <a href="admin_products.php">Add Vehicle</a>
-         <a href="admin_orders.php">Add Shedule</a>
+         <a href="index.php">home</a>
+         <a href="add_vehicle.php">Add Vehicle</a>
+         <a href="add_shedule.php">Add Shedule</a>
          <a href="admin_users.php">Booking Details</a>
          <a href="admin_contacts.php">user</a>
       </nav>

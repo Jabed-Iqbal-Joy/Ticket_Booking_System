@@ -68,7 +68,7 @@ $result = $connect->query($sql);
 
     <div style="display: flex">
     <section class="add-vehicles">
-        <h1 class="title">add new Vehicle</h1>
+        <h1 class="title">ADD NEW SHEDULE</h1>
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="inputBox">
                 <select name="v_type" class="box" required>
@@ -77,29 +77,34 @@ $result = $connect->query($sql);
                     <option value="train">train</option>
                     <option value="flight">flight</option>
                 </select>
-                <input type="text" name="v_name" class="box" required placeholder="Enter Vehicle name">
                 <input type="text" name="v_number" class="box" required placeholder="Enter Vehicle Number">
-                <input type="text" name="v_class" class="box" required placeholder="Enter Vehicle Class">
-                <input type="text" name="v_seat" class="box" required placeholder="Enter Total Seat">
-                <input type="text" name="v_fare" class="box" required placeholder="Enter Fare Per Seat">
+                <input type="text" name="start_point" class="box" required placeholder="Enter starting point">
+                <input type="text" name="end_point" class="box" required placeholder="Enter end point">
+                <input type="text" name="dep_time" class="box" required placeholder="Enter departure time">
+                <input type="text" name="arr_time" class="box" required placeholder="Enter arrival time">
+                <input type="text" name="date" class="box" required placeholder="Enter date">
+                <input type="text" name="free_seat" class="box" required placeholder="Enter available seat">
+                <input type="text" name="free_seat_index" class="box" required placeholder="Enter available index">
             </div>
             <input type="submit" class="btn" value="add vehicle" name="add_vehicle">
         </form>
     </section>
     <section class="add-vehicles">
-        <h1 class="title">VEHICLE LIST</h1>
+        <h1 class="title">SHEDULE LIST</h1>
         <table>
             <tr>
                 <th>ID</th>
                 <th>Type</th>
-                <th>Name</th>
                 <th>Number</th>
-                <th>Class</th>
-                <th>Seat</th>
-                <th>Fare</th>
+                <th>Start Point</th>
+                <th>End Point</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Date</th>
+                <th>Free Seat</th>
+                <th>Free Seat Index</th>
             </tr>
             <?php
-                // LOOP TILL END OF DATA
                 while($rows=$result->fetch_assoc())
                 {
             ?>
