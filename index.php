@@ -10,7 +10,7 @@ include 'config.php';
 <body>
     <?php include('header.php'); ?>
     <main id="main">
-        <!--================ Banner==  =================-->
+        <!--================ Banner Joy change  =================-->
         <div class="banner">
             <img src="assets/img/banner1.jpg" class="bg">
         </div>
