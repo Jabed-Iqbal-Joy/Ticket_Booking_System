@@ -1,5 +1,6 @@
 <?php
 session_start();
+$page="search_vehicle";
 include 'config.php';
 $query = "SELECT destination_name FROM destination ORDER BY destination_name ASC";
 $result = $connect->query($query);
@@ -21,11 +22,11 @@ if(isset($_POST['search'])){
     $search_date1 = filter_var($search_date1 ,FILTER_SANITIZE_STRING);
     $search_date2 = $_POST['search_date2'];
     $search_date2 = filter_var($search_date2 ,FILTER_SANITIZE_STRING);
-   $check_available_vehicle  = 
-   $connect->query("SELECT * FROM `available_vehicle` 
+    $v_type = $_GET['vehicle'];
+   $check_available_vehicle  =  $connect->query("SELECT * FROM `available_vehicle` 
                     INNER JOIN vehicle
                     ON available_vehicle.av_v_number=vehicle.v_number
-                    WHERE start_point = '$dest_from' AND end_point = '$dest_to' AND date='$search_date1'");
+                    WHERE start_point = '$dest_from' AND end_point = '$dest_to' AND date='$search_date1' AND av_v_type='$v_type' ");
    if( mysqli_num_rows($check_available_vehicle) > 0){
         while ($fetch_products = mysqli_fetch_assoc($check_available_vehicle)) {
             $_SESSION['Vehicle_list'][] = $fetch_products;

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$page="available_vehicle";
 $max = count($_SESSION['Vehicle_list']);
 for($x=0;$x<$max;$x++)
 {

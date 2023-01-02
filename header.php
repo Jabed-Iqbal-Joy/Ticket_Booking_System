@@ -91,7 +91,7 @@ function open_bar() {
                         }
                         else{
                             //echo ("notset");
-                            echo '<li ><a href="signin.php">Sign in</a></li>';
+                            echo '<li ><a href="signin.php?page='.$page.'">Sign in</a></li>';
                         }
                         ?>
                     </ul>

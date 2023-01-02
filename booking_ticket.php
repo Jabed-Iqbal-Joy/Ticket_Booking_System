@@ -1,5 +1,6 @@
 <?php
 session_start();
+$page="booking_ticket";
 include 'config.php';
 // echo (!isset($_SESSION['userid']));
 // echo "<pre>";
