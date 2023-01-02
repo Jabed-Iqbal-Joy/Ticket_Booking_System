@@ -25,20 +25,20 @@ if(isset($_POST['book_btn']))
     $pemail = $_POST['t_email'];
     $pemail = filter_var($pemail ,FILTER_SANITIZE_STRING);
     echo $pemail;
-    $pseat = $_POST['fseat_no'];
+    $pseat = $_POST['fseat_no']." ";
     if($_POST['sseat_no'])
-    $pseat = $pseat." ".$_POST['sseat_no'];
+    $pseat .= $_POST['sseat_no']." ";
     if($_POST['tseat_no'])
-    $pseat = $pseat." ".$_POST['tseat_no'];
+    $pseat .= $_POST['tseat_no']." ";
     if($_POST['frseat_no'])
-    $pseat = $pseat." ".$_POST['frseat_no'];
+    $pseat .= $_POST['frseat_no']." ";
     $pseat = filter_var($pseat ,FILTER_SANITIZE_STRING);
     echo $pseat;
     $p_t_cost = $_POST['total_cost_in'];
     $p_t_cost = filter_var($p_t_cost ,FILTER_SANITIZE_STRING);
     $text = $_SESSION['user_details']['u_name'];
     $v_type = $_SESSION['final_Vehicle']['v_type'];
-    $v_name = $_SESSION['final_Vehicle']['v_name'];
+    $v_number = $_SESSION['final_Vehicle']['v_number'];
     $start_point = $_SESSION['final_Vehicle']['start_point'];
     $end_point = $_SESSION['final_Vehicle']['end_point'];
     $dep_time = $_SESSION['final_Vehicle']['dep_time'];
@@ -51,7 +51,7 @@ if(isset($_POST['book_btn']))
          b_p_email,b_p_seat, b_total_fare, b_user_name, b_v_type, b_v_number, 
          b_start_point, b_end_point, b_dep_time, b_arr_time, b_date )
          VALUES('$pname', '$pgender', '$pmbl', '$pemail', '$pseat',
-         '$p_t_cost', '$text', '$v_type', '$v_name','$start_point',
+         '$p_t_cost', '$text', '$v_type', '$v_number','$start_point',
          '$end_point','$dep_time','$arr_time','$date')");?>
 
     <script>
