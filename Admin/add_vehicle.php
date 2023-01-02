@@ -88,7 +88,8 @@ $result = $connect->query($sql);
     </section>
     <section class="add-vehicles">
         <h1 class="title">VEHICLE LIST</h1>
-        <table>
+        <div class="scroll">
+        <table class="scroll">
             <tr>
                 <th>ID</th>
                 <th>Type</th>
@@ -116,6 +117,7 @@ $result = $connect->query($sql);
                 }
             ?>
         </table>
+        </div>
     </section>
     </div>
 
