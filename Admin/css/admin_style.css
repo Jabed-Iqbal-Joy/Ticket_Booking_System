@@ -35,6 +35,43 @@
    color:var(--black);
 }
 
+.add-vehicles form{
+   max-width: 70rem;
+   padding:2rem;
+   margin:0 auto;
+   text-align: center;
+   border:var(--border);
+   box-shadow: var(--box-shadow);
+   background-color: var(--white);
+   border-radius: .5rem;
+}
+
+.add-vehicles form .flex{
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+.add-vehicles form .flex .inputBox{
+   width: 49%;
+}
+
+.add-vehicles form .box{
+   width: 100%;
+   margin:1rem 0;
+   padding:1.2rem 1.4rem;
+   font-size: 1.8rem;
+   color:var(--black);
+   border-radius: .5rem;
+   background-color: var(--light-bg);
+   border:var(--border);
+}
+
+.add-vehicles form textarea{
+   height: 20rem;
+   resize: none;
+}
+
 .add-products form{
    max-width: 70rem;
    padding:2rem;
