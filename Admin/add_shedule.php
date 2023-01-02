@@ -6,41 +6,56 @@ session_start();
 // if(!isset($admin_id)){
 //    header('location:login.php');
 // };
-if(isset($_POST['add_vehicle'])){
+$query = "SELECT destination_name FROM destination ORDER BY destination_name ASC";
+$result = $connect->query($query);
+$data = array();
+foreach($result as $row)
+{
+   $data[] = array(
+      'label' => $row['destination_name'],
+      'value' => $row['destination_name']
+   );
+}
+if(isset($_POST['add_shedule'])){
     
    $v_type = $_POST['v_type'];
    $v_type = filter_var($v_type, FILTER_SANITIZE_STRING);
-   $v_name = $_POST['v_name'];
-   $v_name = filter_var($v_name, FILTER_SANITIZE_STRING);
    $v_number = $_POST['v_number'];
    $v_number = filter_var($v_number, FILTER_SANITIZE_STRING);
-   $v_class = $_POST['v_class'];
-   $v_class = filter_var($v_class, FILTER_SANITIZE_STRING);
-   $v_seat = $_POST['v_seat'];
-   $v_seat = filter_var($v_seat, FILTER_SANITIZE_STRING);
-   $v_fare = $_POST['v_fare'];
-   $v_fare = filter_var($v_fare, FILTER_SANITIZE_STRING);
+   $start_point = $_POST['start_point'];
+   $start_point = filter_var($start_point, FILTER_SANITIZE_STRING);
+   $end_point = $_POST['end_point'];
+   $end_point = filter_var($end_point, FILTER_SANITIZE_STRING);
+   $dep_time = $_POST['dep_time'];
+   $dep_time = filter_var($dep_time, FILTER_SANITIZE_STRING);
+   $arr_time = $_POST['arr_time'];
+   $arr_time = filter_var($arr_time, FILTER_SANITIZE_STRING);
+   $date = $_POST['date'];
+   $date = filter_var($date, FILTER_SANITIZE_STRING);
+   $free_seat = $_POST['free_seat'];
+   $free_seat = filter_var($free_seat, FILTER_SANITIZE_STRING);
+   $free_seat_index = $_POST['free_seat_index'];
+   $free_seat_index = filter_var($free_seat_index, FILTER_SANITIZE_STRING);
 
-   $sql= (" SELECT * FROM vehicle WHERE v_number='$v_number' ");
+   $sql= (" SELECT * FROM available_vehicle WHERE av_v_number='$v_number' ");
    $query=$connect->query($sql);
   
    if(mysqli_num_rows($query)>0){
-      $message[] = 'This vehicle already exist!';
+      $message[] = 'This Shedule already exist!';
    }else{
 
-      $insert_vehicles=mysqli_query($connect,"INSERT INTO vehicle(v_type, v_name, v_number,v_class,v_total_seat,v_fare_per_seat) 
-      VALUES('$v_type','$v_name','$v_number', '$v_class' ,'$v_seat','$v_fare')");
+      $insert_shedule=mysqli_query($connect,"INSERT INTO available_vehicle (av_v_type, av_v_number,start_point,end_point,dep_time,arr_time,date,free_seat,free_seat_index) 
+      VALUES('$v_type','$v_number','$start_point', '$end_point' ,'$dep_time','$arr_time','$date','$free_seat','$free_seat_index')");
 
-      if($insert_vehicles){
-            $message[] = 'new Vehicle added!';
+      if($insert_shedule){
+            $message[] = 'new Vehicle Shedule added!';
       }
    }
 };
 ?>
 <?php
-$sql = " SELECT * FROM vehicle ORDER BY v_id ASC ";
+$sql = " SELECT * FROM available_vehicle ORDER BY av_id ASC ";
 $result = $connect->query($sql);
-
 ?>
 
 
@@ -58,6 +73,7 @@ $result = $connect->query($sql);
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/admin_style.css">
+    <script src="../assets/js/autocomplete.js"></script>
 
 </head>
 
@@ -67,67 +83,92 @@ $result = $connect->query($sql);
     <script src="js/script.js"></script>
 
     <div style="display: flex">
-    <section class="add-vehicles">
-        <h1 class="title">ADD NEW SHEDULE</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="inputBox">
-                <select name="v_type" class="box" required>
-                    <option value="" selected disabled>Select Vehicle Type</option>
-                    <option value="bus">bus</option>
-                    <option value="train">train</option>
-                    <option value="flight">flight</option>
-                </select>
-                <input type="text" name="v_number" class="box" required placeholder="Enter Vehicle Number">
-                <input type="text" name="start_point" class="box" required placeholder="Enter starting point">
-                <input type="text" name="end_point" class="box" required placeholder="Enter end point">
-                <input type="text" name="dep_time" class="box" required placeholder="Enter departure time">
-                <input type="text" name="arr_time" class="box" required placeholder="Enter arrival time">
-                <input type="text" name="date" class="box" required placeholder="Enter date">
-                <input type="text" name="free_seat" class="box" required placeholder="Enter available seat">
-                <input type="text" name="free_seat_index" class="box" required placeholder="Enter available index">
-            </div>
-            <input type="submit" class="btn" value="add vehicle" name="add_vehicle">
-        </form>
-    </section>
-    <section class="add-vehicles">
-        <h1 class="title">SHEDULE LIST</h1>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Number</th>
-                <th>Start Point</th>
-                <th>End Point</th>
-                <th>Departure Time</th>
-                <th>Arrival Time</th>
-                <th>Date</th>
-                <th>Free Seat</th>
-                <th>Free Seat Index</th>
-            </tr>
-            <?php
+        <section class="add-shedule">
+            <h1 class="title">ADD NEW SHEDULE</h1>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="inputBox">
+                    <select name="v_type" class="box" required>
+                        <option value="" selected disabled>Select Vehicle Type</option>
+                        <option value="bus">bus</option>
+                        <option value="train">train</option>
+                        <option value="flight">flight</option>
+                    </select>
+                    <input type="text" name="v_number" class="box" required placeholder="Enter Vehicle Number">
+                    <input type="text" name="start_point" id="start_point" class="box" required
+                        placeholder="Enter starting point">
+                    <input type="text" name="end_point" id="end_point" class="box" required
+                        placeholder="Enter end point">
+                    <input type="time" name="dep_time" class="box" required placeholder="Enter departure time">
+                    <input type="time" name="arr_time" class="box" required placeholder="Enter arrival time">
+                    <input type="date" name="date" class="box" required placeholder="Enter date" id="date">
+                    <input type="text" name="free_seat" class="box" required placeholder="Enter available seat">
+                    <input type="text" name="free_seat_index" class="box" required placeholder="Enter available index">
+                </div>
+                <input type="submit" class="btn" value="add Shedule" name="add_shedule">
+            </form>
+        </section>
+    </div>
+    <div class="div">
+        <section class="add-vehicles">
+            <h1 class="title">SHEDULE LIST</h1>
+            <div class="scroll">
+                <table class="scroll">
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Number</th>
+                        <th>Start Point</th>
+                        <th>End Point</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        <th>Date</th>
+                        <th>Free Seat</th>
+                        <th>Free Seat Index</th>
+                    </tr>
+                    <?php
                 while($rows=$result->fetch_assoc())
                 {
             ?>
-            <tr>
-                <td><?php echo $rows['v_id'];?></td>
-                <td><?php echo $rows['v_type'];?></td>
-                <td><?php echo $rows['v_name'];?></td>
-                <td><?php echo $rows['v_number'];?></td>
-                <td><?php echo $rows['v_class'];?></td>
-                <td><?php echo $rows['v_total_seat'];?></td>
-                <td><?php echo $rows['v_fare_per_seat'];?></td>
-            </tr>
-            <?php
+                    <tr>
+
+                        <td><?php echo $rows['av_id'];?></td>
+                        <td><?php echo $rows['av_v_type'];?></td>
+                        <td><?php echo $rows['av_v_number'];?></td>
+                        <td><?php echo $rows['start_point'];?></td>
+                        <td><?php echo $rows['end_point'];?></td>
+                        <td><?php echo $rows['dep_time'];?></td>
+                        <td><?php echo $rows['arr_time'];?></td>
+                        <td><?php echo $rows['date'];?></td>
+                        <td><?php echo $rows['free_seat'];?></td>
+                        <td><?php echo $rows['free_seat_index'];?></td>
+
+                    </tr>
+                    <?php
                 }
             ?>
-        </table>
-    </section>
+                </table>
+            </div>
+        </section>
     </div>
-
-
-
-    
 
 </body>
 
 </html>
+<script>
+var todayDate = new Date().toISOString().slice(0, 10);
+document.getElementById("date").setAttribute('min', todayDate);
+
+var auto_complete = new Autocomplete(document.getElementById('start_point'), {
+    data: <?php echo json_encode($data) ?>,
+    maximumItems: 10,
+    highlightTyped: true,
+    highlightClass: 'fw-bold text-primary'
+});
+
+var auto_complete = new Autocomplete(document.getElementById('end_point'), {
+    data: <?php echo json_encode($data) ?>,
+    maximumItems: 10,
+    highlightTyped: true,
+    highlightClass: 'fw-bold text-primary'
+});
+</script>
