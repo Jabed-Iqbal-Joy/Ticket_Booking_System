@@ -1,6 +1,6 @@
 <?php
 session_start();
-$page="search_vehicle";
+$page="search_vehicle&vehicle=".$_GET['vehicle'];
 include 'config.php';
 $query = "SELECT destination_name FROM destination ORDER BY destination_name ASC";
 $result = $connect->query($query);

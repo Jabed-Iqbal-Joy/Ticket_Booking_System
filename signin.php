@@ -26,6 +26,9 @@ if(isset($_POST['submit'])){
          $_SESSION['userid'] = 0;
          $_SESSION['user_details'] = $row;
          $page = $_GET['page'].".php";
+         if(isset($_GET['vehicle'])){
+            $page = $page . "?vehicle=" . $_GET['vehicle'];
+         }
         // $_SESSION['userid'] = $row['id'];
          header('location:' . $page);
 
