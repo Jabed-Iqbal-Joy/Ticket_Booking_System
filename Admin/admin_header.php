@@ -21,10 +21,10 @@ if(isset($message)){
 
       <nav class="navbar">
          <a href="admin_page.php">home</a>
-         <a href="admin_products.php">products</a>
-         <a href="admin_orders.php">orders</a>
-         <a href="admin_users.php">users</a>
-         <a href="admin_contacts.php">messages</a>
+         <a href="admin_products.php">Add Vehicle</a>
+         <a href="admin_orders.php">Add Shedule</a>
+         <a href="admin_users.php">Booking Details</a>
+         <a href="admin_contacts.php">user</a>
       </nav>
 
       <div class="icons">

@@ -24,9 +24,10 @@ session_start();
 
 <section class="dashboard">
 
-   <h1 class="title">dashboard</h1>
+   <h1 class="title">Welcome To Dashboard..</h1>
 
-   <div class="box-container">
+
+   <!-- <div class="box-container"> -->
 
       <!-- <div class="box">
       
@@ -35,10 +36,10 @@ session_start();
       <a href="admin_orders.php" class="btn">see orders</a>
       </div> -->
 
-      <div class="box">
+      <!-- <div class="box">
       <h3>0/-</h3>
       <p>completed orders</p>
-      <a href="admin_orders.php" class="btn">see orders</a>
+      <a href="admin_orders.php" class="btn">Add Vehicle</a>
       </div>
 
       <div class="box">
@@ -69,14 +70,14 @@ session_start();
       <h3>0</h3>
       <p>total accounts</p>
       <a href="admin_users.php" class="btn">see accounts</a>
-      </div>
+      </div> -->
 
       <!-- <div class="box">
       <h3>0</h3>
       <p>total messages</p>
       <a href="admin_contacts.php" class="btn">see messages</a>
       </div> -->
-   </div>
+   <!-- </div> -->
 </section>
 
 
