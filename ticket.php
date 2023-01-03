@@ -1,10 +1,8 @@
 <?php
 use Mpdf\Mpdf;
 session_start();
-require('vendor/autoload.php');
 include 'config.php';
 $user_name = $_SESSION['user_details']['u_name'];
-
     $sql= ("SELECT MAX(b_id) AS b_id FROM booking_details WHERE b_user_name='$user_name'");
     $query=$connect->query($sql);
     $row1=mysqli_fetch_assoc($query);
@@ -17,8 +15,8 @@ $user_name = $_SESSION['user_details']['u_name'];
     $query1=$connect->query($sql1);
     $row=mysqli_fetch_assoc($query1);
 
-
-$html = '<!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <body>
@@ -29,42 +27,37 @@ $html = '<!DOCTYPE html>
                 <div class="info">
                     <div class="infobox">
                         <label>Name : </label>
-                        <labe class="input">';
-$html .= $row['b_p_name'];
-$html .= '</label>
+                        <labe class="input"><?= $row['b_p_name'];?></label>
                     </div>
                     <div class="infobox">
                         <label>Gender : </label>
-                        <labe class="input">';
-$html .= $row['b_p_gender']; $html.= '</label>
+                        <label class="input"><?= $row['b_p_gender']; ?></label>
                     </div>
                     <div class="infobox">
                         <label>Mobile : </label>
-                        <labe class="input"'; $html .= $row['b_p_mobile'];$html.='</label>
+                        <labe class="input"><?= $row['b_p_mobile'];?></label>
                     </div>
                     <div class="infobox">
                         <label>Email : </label>
-                        <labe class="input"';$html.=$row['b_p_mobile'];$html.='</label>
+                        <label class="input"><?=$row['b_p_mobile'];?></label>
                     </div>
                 </div>
                 <div class="bus_details">
                     <div class="bus">
                         <label>Bus Name : </label>
-                        <labe class="input">';
-$html .= $row['v_name']; $html.='</label>
+                        <label class="input"><?= $row['v_name'];?></label>
                     </div>
                     <div class="bus">
                         <label>Date : </label>
-                        <labe class="input"';
-$html .= $row['b_date'];$html.='</label>
+                        <label class="input"><?= $row['b_date'];?></label>
                     </div>
                     <div class="bus">
                         <label>Status : </label>
-                        <labe class="input">Reserved</label>
+                        <label class="input">Reserved</label>
                     </div>
                     <div class="bus">
                         <label>Route : </label>
-                        <labe class="input">';$html.=$row['b_start_point'] . " - " . $row['b_end_point'];$html.='</label>
+                        <label class="input"><?=$row['b_start_point'] . " - " . $row['b_end_point'];?></label>
                     </div>
                 </div>
             </div>
@@ -74,21 +67,21 @@ $html .= $row['b_date'];$html.='</label>
                         <th style="width:240px;border: 2px solid black;border-collapse: collapse;"> Seat </th>
                         <th style="width:80px;border: 2px solid black;border-collapse: collapse;"> Fare </th>
                         <th style="width:80px;border: 2px solid black;border-collapse: collapse;"> Class </th>
-                    </tr>';
+                    </tr><?php
                     $total_seat=strlen($row['b_p_seat'])/3;
                     for($x=0;$x<$total_seat;$x++)
                     { 
-                      $html.='<tr>
-                        <td style="width:240px;border: 2px solid black;border-collapse: collapse;">';$html.=$row['b_p_seat'][$x * 3] . $row['b_p_seat'][$x * 3 + 1]; $html.='</td>
-                        <td style="width:80px;border: 2px solid black;border-collapse: collapse;">'; $html.=$row['v_fare_per_seat'];$html.='</td>
-                        <td style="width:80px;border: 2px solid black;border-collapse: collapse;">'; $html.=$row['v_class'];$html.='</td>
-                    </tr>';
+                        ?>
+                       <tr>
+                        <td style="width:240px;border: 2px solid black;border-collapse: collapse;"><?=$row['b_p_seat'][$x * 3] . $row['b_p_seat'][$x * 3 + 1];?></td>
+                        <td style="width:80px;border: 2px solid black;border-collapse: collapse;"> <?=$row['v_fare_per_seat'];?></td>
+                        <td style="width:80px;border: 2px solid black;border-collapse: collapse;"> <?=$row['v_class'];?></td>
+                    </tr><?php
                     }
-                   $html.='<tr>
+                    ?>
+                    <tr>
                         <td style="width:240px;border: 2px solid black;border-collapse: collapse;"> Total Tk/- </td>
-                        <td colspan="2" style="width:80px;border: 2px solid black;border-collapse: collapse;">';
-$html .= $row['v_fare_per_seat'] * $total_seat;
-$html .= '</td>
+                        <td colspan="2" style="width:80px;border: 2px solid black;border-collapse: collapse;"><?= $row['v_fare_per_seat'] * $total_seat;?></td>
                     </tr>
                 </table>
                 <div class="footer" style="margin-bottom:20px;">
@@ -101,7 +94,8 @@ $html .= '</td>
             </div>
         </div>
     </main>
-</body><style>
+</body>
+<style>
 .box {
     border: 2px solid black;
     min-height: 30rem;
@@ -130,7 +124,6 @@ $html .= '</td>
     width: 300px;
     padding: 10px;
     margin: 20px;
-    margin-left: 60px;
     justify-content: center;
 }
 
@@ -156,12 +149,4 @@ $html .= '</td>
     width: 40rem;
     margin-left: 50px;
 }
-</style>';
-
-$mpdf = new Mpdf();
-$mpdf->writeHTML($html);
-$file = time() . '.pdf';
-$mpdf->output($file, 'I');
-
-
-?>
+</style>
