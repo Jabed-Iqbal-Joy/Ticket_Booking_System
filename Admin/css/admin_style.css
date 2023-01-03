@@ -137,6 +137,11 @@
    height: 20rem;
    resize: none;
 }
+.booking-tb{
+   margin-left: 170px;
+   width: 2500px;
+
+}
 
 .add-products form {
    max-width: 70rem;
