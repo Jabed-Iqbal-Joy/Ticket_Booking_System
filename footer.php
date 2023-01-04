@@ -7,7 +7,7 @@
       <a href="index.html" class="logo d-flex align-items-center">
         <span>Easy Routes</span>
       </a>
-      <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+      <p>Easy purchase of tickets using internet</p>
       <div class="social-links d-flex mt-4">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -41,11 +41,11 @@
     <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
       <h4>Contact Us</h4>
       <p>
-        A108 Adam Street <br>
-        New York, NY 535022<br>
-        United States <br><br>
-        <strong>Phone:</strong> +1 5589 55488 55<br>
-        <strong>Email:</strong> info@example.com<br>
+        A108 XXX Street <br>
+        Dhaka, DH XXXXX<br>
+        Bangladesh <br><br>
+        <strong>Phone:</strong> +880 18XX XXXXXX<br>
+        <strong>Email:</strong> support@easyroute.com<br>
       </p>
 
     </div>

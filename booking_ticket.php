@@ -2,38 +2,73 @@
 session_start();
 $page="booking_ticket";
 include 'config.php';
-// echo (!isset($_SESSION['userid']));
+
 // echo "<pre>";
-// print_r($_SESSION['final_Vehicle']);
-// echo "</pre>";
-// echo ($_SESSION['final_Vehicle']['free_seat_index'][2]);
+//     print_r($_SESSION['final_Vehicle']);
+//     echo "</pre>";
 
 if(isset($_POST['book_btn']))
 {
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
+    // echo "<pre>";
+    // print_r($_POST);
+    // echo "</pre>";
     $pname = $_POST['t_from_fname']." ".$_POST['t_from_lname'];
     $pname = filter_var($pname ,FILTER_SANITIZE_STRING);
-    echo $pname;
+    //echo $pname;
     $pgender = $_POST['gender'];
     $pgender = filter_var($pgender ,FILTER_SANITIZE_STRING);
-    echo $pgender;
+   // echo $pgender;
     $pmbl = $_POST['t_mobile'];
     $pmbl = filter_var($pmbl ,FILTER_SANITIZE_STRING);
-    echo $pmbl;
+    //echo $pmbl;
     $pemail = $_POST['t_email'];
     $pemail = filter_var($pemail ,FILTER_SANITIZE_STRING);
-    echo $pemail;
+
+    
+    //echo $pemail;
+    $v1 = $_SESSION['final_Vehicle']['free_seat_index'];
+    $cnt = 0;
+    for ($nx = 0; $nx < 40;$nx++)
+    {
+        if ($v1[$nx] == '0')
+            $cnt++;
+    }
+    $v2 = $cnt;
+   // echo $_SESSION['final_Vehicle']['free_seat'];
+   // echo $v2 . "===";
+    $v3 = $_SESSION['final_Vehicle']['av_id'];
+    //echo "-----";
     $pseat = $_POST['fseat_no']." ";
-    if($_POST['sseat_no'])
-    $pseat .= $_POST['sseat_no']." ";
-    if($_POST['tseat_no'])
-    $pseat .= $_POST['tseat_no']." ";
-    if($_POST['frseat_no'])
-    $pseat .= $_POST['frseat_no']." ";
+    $value= ((int)((ord($pseat[0]))-(ord('A')))*4);
+    $value2 = ((int) ((ord($pseat[1])) - (ord('1'))));
+    $value += $value2;
+    $v1[$value] = '1';
+    $v2-=1;
+    if ($_POST['sseat_no']) {
+        $pseat .= $_POST['sseat_no'] . " ";
+        $value= ((int)((ord($pseat[3]))-(ord('A')))*4);
+        $value2 = ((int) ((ord($pseat[4])) - (ord('1'))));
+        $value += $value2;
+        $v1[$value] = '1';
+        $v2-=1;
+    }
+    if ($_POST['tseat_no']) {
+        $pseat .= $_POST['tseat_no'] . " ";
+        $value= ((int)((ord($pseat[6]))-(ord('A')))*4);
+        $value2 = ((int) ((ord($pseat[7])) - (ord('1'))));
+        $value += $value2;
+        $v1[$value] = '1';
+        $v2-=1;
+    }
+    if ($_POST['frseat_no']) {
+        $pseat .= $_POST['frseat_no'] . " ";
+        $value= ((int)((ord($pseat[9]))-(ord('A')))*4);
+        $value2 = ((int) ((ord($pseat[10])) - (ord('1'))));
+        $value += $value2;
+        $v1[$value] = '1';
+        $v2-=1;
+    }
     $pseat = filter_var($pseat ,FILTER_SANITIZE_STRING);
-    echo $pseat;
     $p_t_cost = $_POST['total_cost_in'];
     $p_t_cost = filter_var($p_t_cost ,FILTER_SANITIZE_STRING);
     $text = $_SESSION['user_details']['u_name'];
@@ -52,17 +87,26 @@ if(isset($_POST['book_btn']))
          b_start_point, b_end_point, b_dep_time, b_arr_time, b_date )
          VALUES('$pname', '$pgender', '$pmbl', '$pemail', '$pseat',
          '$p_t_cost', '$text', '$v_type', '$v_number','$start_point',
-         '$end_point','$dep_time','$arr_time','$date')");?>
-
-    <script>
-    window.location.href = 'booking_ticket.php';
-    </script>
-<?php } ?>
+         '$end_point','$dep_time','$arr_time','$date')");
+    
+    $user_name = $_SESSION['user_details']['u_name'];
+    
+    $update_index = $connect->query("UPDATE `available_vehicle` SET free_seat_index = '$v1' WHERE av_id = '$v3'");
+    $update_v2 = $connect->query("UPDATE `available_vehicle` SET free_seat = '$v2' WHERE av_id = '$v3'");
+  
+    $sql= ("SELECT MAX(b_id) AS b_id FROM booking_details WHERE b_user_name='$user_name'");
+    $query=$connect->query($sql);
+    $row1=mysqli_fetch_assoc($query);
+    $id = $row1['b_id'];
+    header('location:booking_Complete.php?t_id='.$id);
+     }      
+?>
 
 
 <!DOCTYPE html>
 <html lang="en">
 <?php include('head.php'); ?>
+
 <body>
     <?php include('header.php'); ?>
     <main id="main">
@@ -180,7 +224,7 @@ if(isset($_POST['book_btn']))
                         <i class="bi bi-caret-right-fill arrow"></i>
                         <input type="text" id="route_txt2" value="<?php echo $_SESSION['final_Vehicle']['end_point'];?>"
                             disabled><br>
-                        <label class="route">Bus : Green line paribahan</label><br>
+                        <label class="route">Bus : <?=$_SESSION['final_Vehicle']['v_name'];?></label><br>
                         <label class="route">Class : </label>
                         <input type="text" id="class_txt" value="<?php echo $_SESSION['final_Vehicle']['v_class']; ?>"
                             disabled>

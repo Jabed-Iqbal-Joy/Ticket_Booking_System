@@ -51,7 +51,7 @@ $result = $connect->query($sql);
                         <th>End Point</th>
                         <th>Dep. Time</th>
                         <th>Arr. Time</th>
-                        <th>Booking Date</th>
+                        <th>Journey Date</th>
                     </tr>
                     <?php
                 while($rows=$result->fetch_assoc())

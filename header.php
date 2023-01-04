@@ -1,3 +1,20 @@
+<?php 
+if(isset($message)){
+    foreach($message as $message){
+       echo '
+       <div class="message">
+          <span>'.$message.'</span>
+          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+       </div>
+       ';
+    }
+ }
+
+?>
+
+
+
+
 <script type="text/javascript" language="javascript">
 function open_bar() {
     console.log("hello");
@@ -56,41 +73,20 @@ function open_bar() {
                 <nav id="navbar" class="navbar">
                     <ul>
                         <!-- <li><a href="#index.php">Home</a></li> -->
-
-                        <li><a href="#about">About</a></li>
-                        <!-- <li><a href="#service">Booking</a></li> -->
-                        <!-- <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#team">Team</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li class="dropdown"><a href="#"><span>Drop Down</span> <i
-                                    class="bi bi-chevron-down dropdown-indicator"></i></a>
-                            <ul>
-                                <li><a href="#">Drop Down 1</a></li>
-                                <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                            class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                    <ul>
-                                        <li><a href="#">Deep Drop Down 1</a></li>
-                                        <li><a href="#">Deep Drop Down 2</a></li>
-                                        <li><a href="#">Deep Drop Down 3</a></li>
-                                        <li><a href="#">Deep Drop Down 4</a></li>
-                                        <li><a href="#">Deep Drop Down 5</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Drop Down 2</a></li>
-                                <li><a href="#">Drop Down 3</a></li>
-                                <li><a href="#">Drop Down 4</a></li>
-                            </ul>
-                        </li> -->
-                        <li><a href="#contact">Contact us</a></li>
                         <?php
-                        //echo (isset($_SESSION['userid'])); 
                         if(isset($_SESSION['userid']))
                         {
-                           // echo ("set");
+                            echo '<li><a href="mybooking.php">My Booking</a></li>';
+                        }
+                        ?>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact us</a></li>
+                        <?php
+                        if(isset($_SESSION['userid']))
+                        {
                             echo '<li><a><span id="signin" onclick="open_bar()">Profile</span> </a></li>';
                         }
                         else{
-                            //echo ("notset");
                             echo '<li ><a href="signin.php?page='.$page.'">Sign in</a></li>';
                         }
                         ?>
@@ -106,13 +102,41 @@ function open_bar() {
                 <p><?=($_SESSION['user_details']['u_name']); ?></p>
                 <a href="user_profile_update.php" class="btn">update profile</a>
                 <a href="logout.php" class="delete-btn">logout</a>
-                <!-- <div class="flex-btn">
-                <a href="login.php" class="option-btn">login</a>
-                <a href="register.php" class="option-btn">register</a>
-            </div> -->
             </div>
         </header><!-- End Header -->
 
     </div>
 
     <!-- End Header -->
+
+
+    <style>
+.messages .box-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 33rem);
+   gap: 1.5rem;
+   align-items: flex-start;
+   justify-content: center;
+}
+
+.messages .box-container .box {
+   border: var(--border);
+   box-shadow: var(--box-shadow);
+   background-color: var(--white);
+   border-radius: .5rem;
+   padding: 2rem;
+}
+
+.messages .box-container .box p {
+   line-height: 1.5;
+   padding: .5rem 0;
+   font-size: 2rem;
+   color: var(--light-color);
+}
+
+.messages .box-container .box p span {
+   color: var(--green);
+}
+
+
+        </style>

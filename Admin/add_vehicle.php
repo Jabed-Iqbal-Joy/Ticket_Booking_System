@@ -67,63 +67,62 @@ $result = $connect->query($sql);
     <script src="js/script.js"></script>
 
     <div style="display: flex">
-    <section class="add-vehicles">
-        <h1 class="title">add new Vehicle</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="inputBox">
-                <select name="v_type" class="box" required>
-                    <option value="" selected disabled>Select Vehicle Type</option>
-                    <option value="bus">bus</option>
-                    <option value="train">train</option>
-                    <option value="flight">flight</option>
-                </select>
-                <input type="text" name="v_name" class="box" required placeholder="Enter Vehicle name">
-                <input type="text" name="v_number" class="box" required placeholder="Enter Vehicle Number">
-                <input type="text" name="v_class" class="box" required placeholder="Enter Vehicle Class">
-                <input type="text" name="v_seat" class="box" required placeholder="Enter Total Seat">
-                <input type="text" name="v_fare" class="box" required placeholder="Enter Fare Per Seat">
-            </div>
-            <input type="submit" class="btn" value="add vehicle" name="add_vehicle">
-        </form>
-    </section>
-    <section class="add-vehicles">
-        <h1 class="title">VEHICLE LIST</h1>
-        <div class="scroll">
-        <table class="scroll">
-            <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Number</th>
-                <th>Class</th>
-                <th>Seat</th>
-                <th>Fare</th>
-            </tr>
-            <?php
-                // LOOP TILL END OF DATA
+        <section class="add-vehicles">
+            <h1 class="title">add new Vehicle</h1>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="inputBox">
+                    <select name="v_type" class="box" required>
+                        <option value="" selected disabled>Select Vehicle Type</option>
+                        <option value="bus">bus</option>
+                        <option value="train">train</option>
+                        <option value="flight">flight</option>
+                    </select>
+                    <input type="text" name="v_name" class="box" required placeholder="Enter Vehicle name">
+                    <input type="text" name="v_number" class="box" required placeholder="Enter Vehicle Number">
+                    <input type="text" name="v_class" class="box" required placeholder="Enter Vehicle Class">
+                    <input type="text" name="v_seat" class="box" required placeholder="Enter Total Seat">
+                    <input type="text" name="v_fare" class="box" required placeholder="Enter Fare Per Seat">
+                </div>
+                <input type="submit" class="btn" value="add vehicle" name="add_vehicle">
+            </form>
+        </section>
+        <section class="add-vehicles">
+            <h1 class="title">VEHICLE LIST</h1>
+            <div class="scroll">
+                <table class="scroll">
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Class</th>
+                        <th>Seat</th>
+                        <th>Fare</th>
+                    </tr>
+                    <?php
                 while($rows=$result->fetch_assoc())
                 {
             ?>
-            <tr>
-                <td><?php echo $rows['v_id'];?></td>
-                <td><?php echo $rows['v_type'];?></td>
-                <td><?php echo $rows['v_name'];?></td>
-                <td><?php echo $rows['v_number'];?></td>
-                <td><?php echo $rows['v_class'];?></td>
-                <td><?php echo $rows['v_total_seat'];?></td>
-                <td><?php echo $rows['v_fare_per_seat'];?></td>
-            </tr>
-            <?php
+                    <tr>
+                        <td><?php echo $rows['v_id'];?></td>
+                        <td><?php echo $rows['v_type'];?></td>
+                        <td><?php echo $rows['v_name'];?></td>
+                        <td><?php echo $rows['v_number'];?></td>
+                        <td><?php echo $rows['v_class'];?></td>
+                        <td><?php echo $rows['v_total_seat'];?></td>
+                        <td><?php echo $rows['v_fare_per_seat'];?></td>
+                    </tr>
+                    <?php
                 }
             ?>
-        </table>
-        </div>
-    </section>
+                </table>
+            </div>
+        </section>
     </div>
 
 
 
-    
+
 
 </body>
 

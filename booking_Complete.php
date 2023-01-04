@@ -1,0 +1,186 @@
+<?php
+session_start();
+$page="index";
+include 'config.php';
+    $id=$_GET['t_id'];
+    $sql1= ("SELECT *
+    FROM booking_details 
+    INNER JOIN vehicle
+    ON booking_details.b_v_number=vehicle.v_number
+    where booking_details.b_id='$id'");
+    $query1=$connect->query($sql1);
+    $row=mysqli_fetch_assoc($query1);
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<?php include('head.php'); ?>
+
+<body>
+    <?php include('header.php'); ?>
+    <main class="t_box">
+        <div class="container">
+            <h4 class="text-center">Booking Ticket Successfull</h4>
+            <button name="print_ticket" class="tbtn">
+                    <a href="check.php?id=<?=$_GET['t_id']?>" class="print_ticket_link"> Print Ticket</a>
+                </button>
+            <div class="box">
+                <h3>Ticket Information</h3>
+                <div class="first_box">
+                    <div class="info">
+                        <div class="infobox">
+                            <label>Name : </label>
+                            <labe class="input"><?= $row['b_p_name'];?></label>
+                        </div>
+                        <div class="infobox">
+                            <label>Gender : </label>
+                            <label class="input"><?= $row['b_p_gender']; ?></label>
+                        </div>
+                        <div class="infobox">
+                            <label>Mobile : </label>
+                            <labe class="input"><?= $row['b_p_mobile'];?></label>
+                        </div>
+                        <div class="infobox">
+                            <label>Email : </label>
+                            <label class="input"><?=$row['b_p_email'];?></label>
+                        </div>
+                    </div>
+                    <div class="bus_details">
+                        <div class="bus">
+                            <label>Bus Name : </label>
+                            <label class="input"><?= $row['v_name'];?></label>
+                        </div>
+                        <div class="bus">
+                            <label>Date : </label>
+                            <label class="input"><?= $row['b_date'];?></label>
+                        </div>
+                        <div class="bus">
+                            <label>Status : </label>
+                            <label class="input">Reserved</label>
+                        </div>
+                        <div class="bus">
+                            <label>Route : </label>
+                            <label class="input"><?=$row['b_start_point'] . " - " . $row['b_end_point'];?></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <table style="width:43rem;border-collapse: collapse;text-align:center;padding:0px;">
+                        <tr>
+                            <th style="width:240px;border: 2px solid black;border-collapse: collapse;"> Seat </th>
+                            <th style="width:80px;border: 2px solid black;border-collapse: collapse;"> Fare </th>
+                            <th style="width:80px;border: 2px solid black;border-collapse: collapse;"> Class </th>
+                        </tr><?php
+                    $total_seat=strlen($row['b_p_seat'])/3;
+                    for($x=0;$x<$total_seat;$x++)
+                    { 
+                        ?>
+                        <tr>
+                            <td style="width:240px;border: 2px solid black;border-collapse: collapse;">
+                                <?=$row['b_p_seat'][$x * 3] . $row['b_p_seat'][$x * 3 + 1];?></td>
+                            <td style="width:80px;border: 2px solid black;border-collapse: collapse;">
+                                <?=$row['v_fare_per_seat'];?></td>
+                            <td style="width:80px;border: 2px solid black;border-collapse: collapse;">
+                                <?=$row['v_class'];?></td>
+                        </tr><?php
+                    }
+                    ?>
+                        <tr>
+                            <td style="width:240px;border: 2px solid black;border-collapse: collapse;"> Total Tk/- </td>
+                            <td colspan="2" style="width:80px;border: 2px solid black;border-collapse: collapse;">
+                                <?= $row['v_fare_per_seat'] * $total_seat;?></td>
+                        </tr>
+                    </table>
+                    <div class="tfooter" style="margin-bottom:20px;">
+                        <label>Note: Terms and conditions might time to time update or change without any
+                            notice.</label><br>
+                        <label>Powered by :</label>
+                        <label> Easy Routes </label><br>
+                        <label>Contact us : support@easyroute.com</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <?php
+include 'footer.php'
+?>
+</body>
+
+<style>
+.tbtn {
+    margin-left:600px;
+    height: 60px;
+    wiwidth: 400px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+
+.print_ticket_link,
+.print_ticket_link:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.t_box {
+    margin: 20px;
+}
+
+.box {
+    border: 2px solid black;
+    min-height: 30rem;
+    width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.first_box {
+    display: flex;
+}
+
+.info {
+    /* background-color: paleturquoise; */
+    height: 140px;
+    width: 300px;
+    padding: 10px;
+    margin: 20px;
+    margin-left: 50px;
+    ;
+}
+
+.bus_details {
+    /* background-color: peachpuff; */
+    height: 140px;
+    width: 300px;
+    padding: 10px;
+    margin: 20px;
+    justify-content: center;
+}
+
+.infobox {
+    width: 300px;
+    border: 2px solid black;
+    font-weight: 50px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.bus {
+    width: 300px;
+    border: 2px solid black;
+    font-weight: 50px;
+    margin-bottom: 5px;
+    padding: 5px;
+    margin-left: 40px;
+}
+
+.ticket {
+    margin-top: 40px;
+    width: 40rem;
+    margin-left: 50px;
+}
+</style>

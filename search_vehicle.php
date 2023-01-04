@@ -1,7 +1,7 @@
 <?php
+include 'config.php';
 session_start();
 $page="search_vehicle&vehicle=".$_GET['vehicle'];
-include 'config.php';
 $query = "SELECT destination_name FROM destination ORDER BY destination_name ASC";
 $result = $connect->query($query);
 $data = array();
@@ -31,8 +31,14 @@ if(isset($_POST['search'])){
         while ($fetch_products = mysqli_fetch_assoc($check_available_vehicle)) {
             $_SESSION['Vehicle_list'][] = $fetch_products;
         }
+        header('location:available_vehicle.php');
    }
-    header('location:available_vehicle.php');
+   else{
+        $message[] = "No Route Found";
+
+   }
+
+    
 }
 ?>
 <!DOCTYPE html>
@@ -71,6 +77,18 @@ if(isset($_POST['search'])){
                             <label class="src-from-lvl">Date of Return(Optional)</label>
                             <input type="date" class="form-control " id="search_date2" name="search_date2"
                                 placeholder="Select Return Date" maxlength="15" value="" autocomplete="off">
+                        </div>
+
+                    </div>
+                    <div class="not_f" id="not_f" style="display:none;">
+                        <div
+                            style="font-size: 14px; color: rgb(235, 83, 90); display: flex; background: rgb(243, 248, 245); border-radius: 3px; padding-left: 0px; margin: 15px 15px;">
+                            <div
+                                style="width: 45.66px;height: 40px;background: #D9E9DE;border-radius: 3px 0px 0px 3px;padding-top: 10px">
+                                <i class="bi bi-info-lg"
+                                    style="font-size:30px;color:green;margin-bottom:120px;margin-left:7px;"></i>
+                            </div>
+                            <div style="margin-left: 10px;padding-top: 10px">No bus found in return route</div>
                         </div>
 
                     </div>

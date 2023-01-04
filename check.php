@@ -4,10 +4,11 @@ require('vendor/autoload.php');
 session_start();
 include 'config.php';
 $user_name = $_SESSION['user_details']['u_name'];
-    $sql= ("SELECT MAX(b_id) AS b_id FROM booking_details WHERE b_user_name='$user_name'");
-    $query=$connect->query($sql);
-    $row1=mysqli_fetch_assoc($query);
-    $id = $row1['b_id'];
+    // $sql= ("SELECT MAX(b_id) AS b_id FROM booking_details WHERE b_user_name='$user_name'");
+    // $query=$connect->query($sql);
+    // $row1=mysqli_fetch_assoc($query);
+    // $id = $row1['b_id'];
+$id = $_GET['id'];
     $sql1= ("SELECT *
     FROM booking_details 
     INNER JOIN vehicle
