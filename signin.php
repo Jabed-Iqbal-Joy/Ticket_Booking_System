@@ -19,8 +19,8 @@ if(isset($_POST['submit'])){
 
       if($row['user_type'] == 'admin'){
 
-         $_SESSION['adminid'] = $row['id'];
-         // header('location:admin_index.php');
+         $_SESSION['adminid'] = $row['u_id'];
+          header('location:Admin/');
 
       }elseif($row['user_type'] == 'user'){
          $_SESSION['userid'] = 0;

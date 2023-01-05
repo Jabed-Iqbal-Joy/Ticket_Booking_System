@@ -37,7 +37,7 @@ if(isset($_POST['add_shedule'])){
    $free_seat_index = $_POST['free_seat_index'];
    $free_seat_index = filter_var($free_seat_index, FILTER_SANITIZE_STRING);
 
-   $sql= (" SELECT * FROM available_vehicle WHERE av_v_number='$v_number' ");
+   $sql= (" SELECT * FROM available_vehicle WHERE av_v_number='$v_number' and date='$date' ");
    $query=$connect->query($sql);
   
    if(mysqli_num_rows($query)>0){

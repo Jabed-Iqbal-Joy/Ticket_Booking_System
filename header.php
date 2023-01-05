@@ -101,7 +101,7 @@ function open_bar() {
                 <img src="uploaded_img/<?= $_SESSION['user_details']['u_img'];?>" alt="">
                 <p><?=($_SESSION['user_details']['u_name']); ?></p>
                 <a href="user_profile_update.php" class="btn">update profile</a>
-                <a href="logout.php" class="delete-btn">logout</a>
+                <a href="signout.php" class="delete-btn">logout</a>
             </div>
         </header><!-- End Header -->
 

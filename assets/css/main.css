@@ -797,8 +797,17 @@ section {
   margin-top: 25px;
 }
 
-.contact .php-email-form .sent-message {
+.contact .php-email-form .sent-message-hidden{
   display: none;
+  color: #fff;
+  background: #059652;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact .php-email-form .sent-message {
+  display: inline-block;
   color: #fff;
   background: #059652;
   text-align: center;

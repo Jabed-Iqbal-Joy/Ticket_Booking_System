@@ -2,6 +2,14 @@
 include 'config.php';
 session_start();
 $page="search_vehicle&vehicle=".$_GET['vehicle'];
+
+if(isset( $_SESSION['Vehicle_list'])){
+    $max1 = count($_SESSION['Vehicle_list']);
+    for ($row = 0; $row < $max1; $row++)
+       unset($_SESSION['Vehicle_list'][$row]);
+    
+}
+
 $query = "SELECT destination_name FROM destination ORDER BY destination_name ASC";
 $result = $connect->query($query);
 $data = array();
